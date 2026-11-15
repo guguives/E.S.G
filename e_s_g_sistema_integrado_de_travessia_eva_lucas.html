@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E.S.G. Mount Sharp — Extraterrestrial Survival Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: #070709;
+      color: #f4f4f5;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+    .font-mono-tech { font-family: 'JetBrains Mono', monospace; }
+
+    /* Helmet Optical Visor Frame */
+    .visor-glass {
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(36, 22, 16, 0.32) 0%, rgba(9, 9, 11, 0.92) 78%, rgba(5, 5, 7, 0.99) 100%),
+        linear-gradient(180deg, #1b120e 0%, #09090b 100%);
+      border-radius: 36px;
+      border: 1px solid rgba(63, 63, 70, 0.65);
+      box-shadow: inset 0 0 60px rgba(34, 211, 238, 0.05), 0 24px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    /* Spacesuit Forearm Sleeve & 16:9 Hardware Chassis */
+    .forearm-sleeve-wrap {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(39, 39, 42, 0.35) 0%, rgba(9, 9, 11, 0.95) 100%),
+        linear-gradient(90deg, #18181b 0%, #27272a 14%, #09090b 28%, #09090b 72%, #27272a 86%, #18181b 100%);
+      border-radius: 44px;
+      border: 2px solid #3f3f46;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), inset 0 2px 6px rgba(255, 255, 255, 0.06);
+    }
+
+    .wrist-lcd-bezel {
+      background: linear-gradient(145deg, #18181b 0%, #09090b 100%);
+      border-radius: 28px;
+      border: 3px solid #3f3f46;
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.95),
+        inset 0 1px 2px rgba(255, 255, 255, 0.08),
+        inset 0 0 0 2px #09090b;
+    }
+
+    /* Tactile Physical Analog Bezel Button (Operable with Pressurized EVA Glove) */
+    .analog-bezel-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 35% 35%, #3f3f46 0%, #18181b 65%, #09090b 100%);
+      border: 3px solid #52525b;
+      box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.9),
+        inset 0 2px 3px rgba(255, 255, 255, 0.2),
+        0 0 0 4px #09090b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+    .analog-bezel-btn:hover {
+      border-color: #22d3ee;
+      box-shadow:
+        0 6px 18px rgba(34, 211, 238, 0.28),
+        inset 0 2px 3px rgba(255, 255, 255, 0.25),
+        0 0 0 4px #09090b;
+    }
+    .analog-bezel-btn:active {
+      transform: scale(0.93);
+      box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.95),
+        inset 0 3px 6px rgba(0, 0, 0, 0.8),
+        0 0 0 4px #09090b;
+    }
+
+    .layer-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      font-size: 9px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-tab {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      color: #a1a1aa;
+      transition: all 0.16s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .nav-tab:hover { color: #f4f4f5; background: #18181b; }
+    .nav-tab.active {
+      background: #18181b;
+      border-color: #3f3f46;
+      color: #ffffff;
+    }
+
+    .chip, .layer-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid #27272a;
+      background: #121215;
+      color: #a1a1aa;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chip:hover, .layer-chip:hover { border-color: #52525b; color: #f4f4f5; }
+    .on-background { background: rgba(16, 185, 129, 0.14) !important; border-color: rgba(16, 185, 129, 0.55) !important; color: #6ee7b7 !important; }
+    .on-topo { background: rgba(34, 211, 238, 0.12) !important; border-color: rgba(34, 211, 238, 0.45) !important; color: #67e8f9 !important; }
+    .on-usgs { background: rgba(245, 158, 11, 0.12) !important; border-color: rgba(245, 158, 11, 0.45) !important; color: #fcd34d !important; }
+    .on-thermal { background: rgba(56, 189, 248, 0.12) !important; border-color: rgba(56, 189, 248, 0.45) !important; color: #7dd3fc !important; }
+    .on-spectral { background: rgba(192, 132, 252, 0.12) !important; border-color: rgba(192, 132, 252, 0.45) !important; color: #e9d5ff !important; }
+    .on-curiosity { background: rgba(251, 146, 60, 0.12) !important; border-color: rgba(251, 146, 60, 0.45) !important; color: #fdba74 !important; }
+    .chip.on-return-locked { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.55); color: #fca5a5; cursor: default; }
+
+    @keyframes pulseSafeRadius {
+      0%, 100% { stroke-opacity: 0.9; stroke-width: 2.2; }
+      50% { stroke-opacity: 0.35; stroke-width: 3.4; }
+    }
+    .safe-return-pulse {
+      animation: pulseSafeRadius 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseSymbolGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 0.78; }
+    }
+    .hud-symbol-pulse {
+      animation: pulseSymbolGlow 1.3s infinite ease-in-out;
+    }
+
+    .hud-symbol-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 9999px; }
+  </style>
+</head>
+<body class="p-3 sm:p-5">
+
+  <div class="max-w-[1320px] mx-auto space-y-4">
+
+    <!-- INTERFACE SELECTOR (SWITCHES BETWEEN SYNCHRONIZED EVA DISPLAYS) -->
+    <header class="flex flex-wrap items-center justify-between gap-3 bg-zinc-900/70 border border-zinc-800 rounded-2xl px-4 py-2.5">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <span class="text-sm font-bold tracking-tight text-white">E.S.G. Mount Sharp</span>
+        <span class="hidden md:inline text-xs font-mono-tech text-zinc-400">• Extraterrestrial Survival Guide — Gale Crater (5.4°S, 137.8°E)</span>
+      </div>
+
+      <!-- 3 Synchronized EVA Interfaces + Voice Control -->
+      <nav class="flex flex-wrap items-center gap-1.5" aria-label="EVA Device Selector">
+        <button id="tab-visor" onclick="switchView('visor')" class="nav-tab">
+          <i class="fa-solid fa-vr-cardboard text-cyan-400"></i>
+          <span>1. Helmet Visor (HUD)</span>
+        </button>
+        <button id="tab-lcd-map" onclick="switchView('lcd-map')" class="nav-tab active">
+          <i class="fa-solid fa-map text-emerald-400"></i>
+          <span>2. Wrist LCD • Map</span>
+        </button>
+        <button id="tab-lcd-data" onclick="switchView('lcd-data')" class="nav-tab">
+          <i class="fa-solid fa-flask text-amber-400"></i>
+          <span>3. Wrist LCD • Data &amp; Science</span>
+        </button>
+
+        <!-- Voice Command Control (Web Speech API) -->
+        <div class="flex items-center gap-1.5 pl-2 ml-1 border-l border-zinc-800">
+          <button id="btnVoiceCmd" onclick="toggleVoiceCommands()" class="nav-tab border-zinc-800 bg-zinc-950/80 text-zinc-300" title="Voice EN/PT: 'left', 'right', 'up', 'down', 'center', 'topography', 'geology', 'thermal', 'spectral', 'curiosity', 'switch LCD', 'dismiss alert'">
+            <i id="voiceMicIcon" class="fa-solid fa-microphone-slash text-zinc-500"></i>
+            <span id="voiceBtnLabel">Voice: Off</span>
+          </button>
+          <span id="voiceFeedbackBadge" class="hidden text-[11px] font-mono-tech text-cyan-300 bg-cyan-950/70 border border-cyan-500/40 px-2.5 py-1 rounded-lg max-w-[230px] truncate"></span>
+          <button onclick="openBriefModal()" class="nav-tab border-cyan-500/40 bg-cyan-950/40 text-cyan-300 hover:bg-cyan-900/50" title="View NASA Challenge Rubric & 5 Mandatory Data Sources">
+            <i class="fa-solid fa-satellite text-cyan-400"></i>
+            <span>NASA Sources &amp; Brief</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- INTERFACE 1: ASTRONAUT HELMET VISOR (MINIMALIST SYMBOLIC HUD)         -->
+    <!-- ===================================================================== -->
+    <section id="view-visor" class="hidden visor-glass p-4 sm:p-6 min-h-[540px] flex flex-col justify-between relative overflow-hidden">
+
+      <!-- Dynamic First-Person Martian Horizon & Atmospheric Dust Scene (Updates per Waypoint & Tau) -->
+      <div id="visorSceneBox" class="pointer-events-none absolute inset-0 w-full h-full select-none overflow-hidden"></div>
+
+      <!-- Visor Top Bar: PLSS O2 Autonomy, Optical Heading & Symbolic Hazard Cluster -->
+      <div class="flex flex-wrap items-start justify-between gap-2.5 z-10">
+        <!-- PLSS O2 Autonomy (Compact) -->
+        <div class="bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3 py-2 min-w-[152px]">
+          <div class="flex items-center justify-between text-[9px] font-mono-tech text-zinc-400 uppercase tracking-wider">
+            <span>PLSS O₂ Autonomy</span>
+            <i class="fa-solid fa-lungs text-emerald-400 text-[9px]"></i>
+          </div>
+          <div class="flex items-baseline gap-1.5 mt-0.5">
+            <span id="hudAutonomyVal" class="text-base font-bold font-mono-tech text-emerald-400">294 min</span>
+            <span id="hudO2RateVal" class="text-[10px] font-mono-tech text-zinc-400">1.1 L/min</span>
+          </div>
+          <div class="w-full h-1 bg-zinc-800 rounded-full mt-1.5 overflow-hidden">
+            <div id="hudAutonomyBar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 82%"></div>
+          </div>
+        </div>
+
+        <!-- Optical Compass & Target Waypoint (Minimalist Top-Center) -->
+        <div class="bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3.5 py-2 text-center">
+          <div class="flex items-center justify-center gap-2.5 text-[10px] font-mono-tech text-zinc-400">
+            <span>N 000°</span>
+            <span class="text-zinc-700">|</span>
+            <span id="hudHeadingVal" class="text-xs font-bold text-cyan-300">HDG 048° NE</span>
+            <span class="text-zinc-700">|</span>
+            <span>E 090°</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 text-[10px] font-mono-tech text-zinc-300 mt-0.5">
+            <span id="hudNextWpLabel">Sector: <strong class="text-white">Murray Terrace</strong></span>
+            <span class="text-zinc-700">•</span>
+            <span>Rover: <strong id="hudDistRoverVal" class="text-emerald-300">245 m</strong></span>
+            <span class="text-zinc-700">•</span>
+            <span>Goal: <strong id="hudDistGoalVal" class="text-cyan-300">695 m</strong></span>
+          </div>
+        </div>
+
+        <!-- Right Block: Symbolic Hazard & Reroute Indicators (Optical HUD Symbols Only) + Radiation Telemetry -->
+        <div class="flex items-start gap-2">
+          <!-- Minimalist Symbolic Warning Strip (Pure Optical Symbols — Voice Controlled) -->
+          <div id="hudSymbolStrip" class="flex flex-wrap items-center gap-1.5">
+            <!-- Symbol 1: Safe Return / Rover Walkback Limit Breached -->
+            <div id="symTurnaround" class="hidden hud-symbol-badge bg-red-950/90 border border-red-500 text-red-300 hud-symbol-pulse" title="Rover Safe Return Radius Exceeded (O₂ Walkback Limit)">
+              <i class="fa-solid fa-person-walking-arrow-loop-left text-xs text-red-400"></i>
+              <span id="symTurnaroundCode">RET &gt; ROVER</span>
+            </div>
+
+            <!-- Symbol 2: Suit Mass / Slope Limit Warning -->
+            <div id="symOverweight" class="hidden hud-symbol-badge bg-amber-950/90 border border-amber-500 text-amber-300 hud-symbol-pulse" title="Suit Mass + Sample Load exceeds safe slope threshold">
+              <i class="fa-solid fa-weight-hanging text-xs text-amber-400"></i>
+              <span id="symOverweightCode">MASS/SLOPE</span>
+            </div>
+
+            <!-- Symbol 3: Environmental Hazard (SEP Solar Storm or Dust Storm) -->
+            <div id="symEnvHazard" class="hidden hud-symbol-badge bg-rose-950/90 border border-rose-500 text-rose-300 hud-symbol-pulse" title="Environmental Hazard Active (SEP Radiation or High Dust Optical Depth)">
+              <i id="symEnvIcon" class="fa-solid fa-radiation text-xs text-rose-400"></i>
+              <span id="symEnvCode">SEP SHELTER</span>
+            </div>
+
+            <!-- Symbol 4: Mandatory Route Reroute Active -->
+            <div id="symRouteChange" class="hidden hud-symbol-badge bg-sky-950/90 border border-sky-400 text-sky-200" title="Contingency Alternate Route Active">
+              <i class="fa-solid fa-code-branch text-xs text-sky-400"></i>
+              <span>ALT ROUTE</span>
+            </div>
+          </div>
+
+          <!-- Space Weather / Radiation (Compact) -->
+          <div class="bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3 py-2 min-w-[132px] text-right">
+            <div class="text-[9px] font-mono-tech text-zinc-400 uppercase tracking-wider">Radiation (RAD)</div>
+            <div id="hudRadVal" class="text-sm font-bold font-mono-tech text-white mt-0.5">0.24 mSv/h</div>
+            <div id="hudRadStatus" class="text-[9px] font-mono-tech text-emerald-400 mt-0.5">Nominal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visor Center: Completely Unobstructed for Direct Terrain Field of View -->
+      <div class="flex-1"></div>
+
+      <!-- Visor Bottom Bar: Slope, Suit Mass (w/ Samples) & Atmosphere -->
+      <div class="flex flex-wrap items-end justify-between gap-2.5 z-10">
+        <!-- Current Slope vs Max Safe Limit (Compact) -->
+        <div class="bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3 py-2 min-w-[165px]">
+          <div class="flex items-center justify-between text-[9px] font-mono-tech text-zinc-400 uppercase">
+            <span>Slope</span>
+            <span id="hudMaxSlopeVal" class="text-amber-400">Max: 15.1°</span>
+          </div>
+          <div class="flex items-baseline justify-between gap-2 mt-0.5">
+            <span id="hudCurrentSlopeVal" class="text-base font-bold font-mono-tech text-white">6.4°</span>
+            <span id="hudSlopeSafetyBadge" class="text-[10px] font-mono-tech text-emerald-400">Firm (310 tiu)</span>
+          </div>
+        </div>
+
+        <!-- Suit Mass & Sample Load Indicator (Minimalist Visor Pill) -->
+        <div id="hudLoadCard" class="bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3.5 py-2 min-w-[140px] text-center transition-all">
+          <div class="flex items-baseline justify-center gap-2">
+            <span id="hudTotalLoadVal" class="text-base font-bold font-mono-tech text-white">24.5 kg</span>
+            <span id="hudLoadLimitBadge" class="text-[10px] font-mono-tech text-emerald-400">Nominal</span>
+          </div>
+        </div>
+
+        <!-- Atmospheric Optical Depth Status (Compact) -->
+        <div class="bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3 py-2 min-w-[150px] text-right">
+          <div class="text-[9px] font-mono-tech text-zinc-400 uppercase tracking-wider">Atmosphere (τ)</div>
+          <div id="hudTauVal" class="text-sm font-bold font-mono-tech text-white mt-0.5">Tau 0.45 τ</div>
+          <div id="hudVisVal" class="text-[9px] font-mono-tech text-zinc-400 mt-0.5">High Visibility</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SPACESUIT FOREARM CHASSIS (HOLDS CLEAN 16:9 MAP OR DATA + ANALOG BTN) -->
+    <!-- ===================================================================== -->
+    <div id="forearmMount" class="forearm-sleeve-wrap p-3 sm:p-5 max-w-[1060px] mx-auto">
+      <div class="wrist-lcd-bezel p-2.5 sm:p-3.5 flex flex-col md:flex-row items-center gap-3">
+
+        <!-- LEFT / MAIN 16:9 FOREARM VIEWPORT (NO HEADER / NO BOTTOM BUTTON BAR) -->
+        <div class="w-full flex-1 aspect-video relative rounded-2xl border border-zinc-800 overflow-hidden bg-[#140e0c]">
+
+          <!-- =============================================================== -->
+          <!-- INTERFACE 2: WRIST LCD — SCREEN A (PURE 16:9 TACTICAL MAP)      -->
+          <!-- =============================================================== -->
+          <section id="view-lcd-map" class="w-full h-full relative select-none">
+            <div id="marsMapContainer" class="w-full h-full relative bg-[#18110e] cursor-grab active:cursor-grabbing" title="Voice Controlled 16:9 Map ('left', 'right', 'up', 'down', 'center', 'zoom in', 'zoom out', 'topography', 'geology', 'thermal', 'spectral', 'curiosity')">
+              <svg id="marsMapSvg" viewBox="0 0 560 290" preserveAspectRatio="xMidYMid slice" class="w-full h-full block transition-all duration-200"></svg>
+
+              <!-- Top-Left Border: Active Waypoint, Confidence Index & Rover Distance -->
+              <div class="pointer-events-none absolute top-2.5 left-2.5 bg-zinc-950/55 backdrop-blur-sm border border-zinc-700/45 rounded-xl px-2.5 py-1.5 font-mono-tech">
+                <div id="mapActiveWpBadge" class="text-[11px] text-cyan-300 font-bold leading-tight">WP-02 • Murray Terrace (97.4% Conf.)</div>
+                <div id="mapActiveWpCoords" class="text-[10px] text-zinc-200/85 leading-tight mt-0.5">Elev -2410m • Slope 6.4° • Rover: 245m</div>
+              </div>
+
+              <!-- Top-Center Border: Essential Single-Line Telemetry Pill (O2, Load w/ Samples, Safe Return) -->
+              <div id="mapEdgeEssentialPill" class="pointer-events-none absolute top-2.5 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 bg-zinc-950/65 backdrop-blur-sm border border-zinc-700/50 rounded-full px-3 py-1 text-[10px] font-mono-tech text-zinc-200 whitespace-nowrap">
+                <span id="mapEdgeO2" class="text-emerald-300 font-semibold">O₂ 294m</span>
+                <span class="text-zinc-600">•</span>
+                <span id="mapEdgeLoad" class="text-cyan-300">Load 24.5kg</span>
+                <span class="text-zinc-600">•</span>
+                <span id="mapRouteStatusBadge" class="text-emerald-300">Safe Return: 760m</span>
+              </div>
+
+              <!-- Top-Right Border: Compact Route Legend + Voice Layer Status LEDs -->
+              <div class="absolute top-2.5 right-2.5 bg-zinc-950/55 backdrop-blur-sm border border-zinc-700/45 rounded-xl px-2.5 py-1.5 font-mono-tech flex flex-col items-end gap-1">
+                <div class="pointer-events-none flex items-center gap-2.5 text-[10px] text-zinc-200/90">
+                  <span class="flex items-center gap-1"><span class="w-3 h-0.5 bg-emerald-400 inline-block"></span>EVA</span>
+                  <span class="flex items-center gap-1"><span class="w-3 h-0.5 border-t-2 border-dotted border-sky-400 inline-block"></span>Alt</span>
+                  <span class="flex items-center gap-1"><span class="w-3 h-0.5 border-t-2 border-dashed border-red-400 inline-block"></span>Return</span>
+                </div>
+                <!-- Minimalist Voice Layer Status Indicators (BG, T, G, I, S, C) -->
+                <div class="flex items-center gap-1" title="Active Voice Layers: Satellite Background (BG), Topography (T), Geology (G), Thermal Inertia (I), Spectral (S), Curiosity Path (C)">
+                  <span id="chip-background" onclick="toggleLayer('background')" class="layer-dot on-background" title="Voice: 'background' / 'plano de fundo' (Toggle Satellite View)">BG</span>
+                  <span id="chip-topo" onclick="toggleLayer('topo')" class="layer-dot" title="Voice: 'topography'">T</span>
+                  <span id="chip-usgs" onclick="toggleLayer('usgs')" class="layer-dot" title="Voice: 'geology'">G</span>
+                  <span id="chip-thermal" onclick="toggleLayer('thermal')" class="layer-dot on-thermal" title="Voice: 'thermal'">I</span>
+                  <span id="chip-spectral" onclick="toggleLayer('spectral')" class="layer-dot on-spectral" title="Voice: 'spectral'">S</span>
+                  <span id="chip-curiosity" onclick="toggleLayer('curiosity')" class="layer-dot on-curiosity" title="Voice: 'curiosity'">C</span>
+                </div>
+              </div>
+
+              <!-- Bottom-Left Border: Segmented Cartographic Scale Bar -->
+              <div class="pointer-events-none absolute bottom-2.5 left-2.5 bg-zinc-950/55 backdrop-blur-sm border border-zinc-700/45 rounded-xl px-2.5 py-1.5 text-zinc-200/85 font-mono-tech">
+                <div class="text-[8px] tracking-wider text-zinc-300/80 font-semibold mb-0.5">SCALE • MARS TREK</div>
+                <div class="flex justify-between text-[9px] font-bold text-white/90 w-[96px] mb-0.5">
+                  <span>0</span>
+                  <span id="mapScaleHalf">125</span>
+                  <span id="mapScaleFull">250m</span>
+                </div>
+                <div class="flex w-[96px] h-[5px] border border-zinc-400/45 overflow-hidden rounded-[2px]">
+                  <div class="w-1/2 h-full bg-white/70"></div>
+                  <div class="w-1/2 h-full bg-zinc-950/35"></div>
+                </div>
+              </div>
+
+              <!-- Bottom-Right Border: Translucent Compass Rose -->
+              <div class="pointer-events-none absolute bottom-2.5 right-2.5 w-[64px] h-[64px] flex items-center justify-center opacity-55">
+                <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
+                  <circle cx="50" cy="50" r="36" fill="rgba(9, 9, 11, 0.25)" stroke="rgba(228, 228, 231, 0.35)" stroke-width="1" />
+                  <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(228, 228, 231, 0.22)" stroke-width="0.8" stroke-dasharray="2 2" />
+                  <polygon points="50,23 55,45 77,50 55,55 50,77 45,55 23,50 45,45" fill="rgba(228, 228, 231, 0.22)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="0.7" transform="rotate(45 50 50)" />
+                  <polygon points="50,12 56,44 50,50 44,44" fill="#f59e0b" />
+                  <polygon points="50,88 56,56 50,50 44,56" fill="rgba(255, 255, 255, 0.65)" />
+                  <polygon points="88,50 56,56 50,50 56,44" fill="rgba(255, 255, 255, 0.65)" />
+                  <polygon points="12,50 44,56 50,50 44,44" fill="rgba(255, 255, 255, 0.65)" />
+                  <circle cx="50" cy="50" r="3.5" fill="rgba(24, 24, 27, 0.6)" stroke="#22d3ee" stroke-width="1.4" />
+                  <text x="50" y="9" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="JetBrains Mono" font-weight="bold">N</text>
+                  <text x="50" y="98" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9" font-family="JetBrains Mono" font-weight="bold">S</text>
+                  <text x="95" y="53" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9" font-family="JetBrains Mono" font-weight="bold">E</text>
+                  <text x="5" y="53" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9" font-family="JetBrains Mono" font-weight="bold">W</text>
+                </svg>
+              </div>
+            </div>
+          </section>
+
+          <!-- =============================================================== -->
+          <!-- INTERFACE 3: WRIST LCD — SCREEN B (16:9 ESSENTIAL DATA & SCIENCE)-->
+          <!-- =============================================================== -->
+          <section id="view-lcd-data" class="hidden w-full h-full bg-zinc-950 p-3 sm:p-4 overflow-y-auto flex flex-col justify-between gap-2.5">
+            
+            <!-- Top Row: The 4 Essential Checklist Parameters (O2, Radiation, Suit+Sample Load, Confidence) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <!-- 1. Suit Load + Estimated Load w/ Samples & O2 Autonomy -->
+              <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-2.5 space-y-1.5">
+                <div class="flex items-center justify-between text-[11px] text-zinc-400">
+                  <span>Suit &amp; Sample Load</span>
+                  <span id="dataMaxSlope" class="font-mono-tech text-amber-400 font-semibold">Max Slope: 15.1°</span>
+                </div>
+                <div class="flex items-baseline justify-between">
+                  <div>
+                    <span id="dataPayloadVal" class="text-lg font-bold font-mono-tech text-white">22 kg</span>
+                    <span id="dataEstLoadWithSamples" class="ml-1 text-[11px] font-mono-tech text-cyan-300">(w/ Samples: 24.5 kg)</span>
+                  </div>
+                  <span id="dataAutonomyVal" class="text-[11px] font-mono-tech text-emerald-400 font-semibold">O₂: 294 min</span>
+                </div>
+                <input id="payloadSlider" type="range" min="12" max="42" value="22" oninput="updateMissionState()" class="w-full accent-cyan-400 h-1.5 cursor-pointer" />
+              </div>
+
+              <!-- 2. Space Weather & Radiation (Curiosity Proposed Path / Mars Trek) -->
+              <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-2.5 space-y-1.5">
+                <div class="flex items-center justify-between text-[11px] text-zinc-400">
+                  <span>Radiation (Curiosity / Mars Trek)</span>
+                  <span id="dataRadTotal" class="font-mono-tech text-emerald-400">Dose: 0.21 mSv</span>
+                </div>
+                <select id="spaceWeatherSelect" onchange="updateMissionState()" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-[11px] text-white focus:outline-none focus:border-cyan-400">
+                  <option value="nominal">Nominal GCR (0.24 mSv/h)</option>
+                  <option value="elevated">Elevated Solar Flux (0.68 mSv/h)</option>
+                  <option value="sep">SEP Event — Scarp Shelter (1.45 mSv/h)</option>
+                </select>
+                <p id="dataRadNote" class="text-[10px] text-zinc-400 truncate">Safe exposure across lower Mount Sharp.</p>
+              </div>
+
+              <!-- 3. Atmosphere & Optical Depth (NASA Worldview) -->
+              <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-2.5 space-y-1.5">
+                <div class="flex items-center justify-between text-[11px] text-zinc-400">
+                  <span>Atmosphere (NASA Worldview)</span>
+                  <span id="dataTempVal" class="font-mono-tech text-sky-300">-54°C • 12 km/h</span>
+                </div>
+                <select id="atmosphereSelect" onchange="updateMissionState()" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-[11px] text-white focus:outline-none focus:border-cyan-400">
+                  <option value="clear">Clear Sky — Tau 0.45 τ</option>
+                  <option value="haze">Dust Haze — Tau 1.25 τ</option>
+                  <option value="dust">Regional Dust — Tau 2.60 τ</option>
+                </select>
+                <p id="dataAtmNote" class="text-[10px] text-zinc-400 truncate">High optical contrast (&gt;15 km).</p>
+              </div>
+            </div>
+
+            <!-- Bottom Row: Active Waypoint Geology, Confidence Index (>=95%) & Surface Visual Preview -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-2.5 flex-1 items-stretch">
+              <div class="lg:col-span-7 bg-zinc-900/90 border border-zinc-800 rounded-xl p-3 flex flex-col justify-between space-y-2">
+                <div>
+                  <div class="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800 pb-2 mb-2">
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <span id="dataWpTitle" class="text-xs sm:text-sm font-bold text-white">WP-02 — Murray Terrace</span>
+                        <span id="dataConfidenceBadge" class="text-[10px] font-mono-tech text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">Confidence: 97.4%</span>
+                      </div>
+                      <div id="dataWpUsgs" class="text-[11px] text-amber-300 mt-0.5">USGS: Pahrump Hills Member / Murray Formation</div>
+                    </div>
+                    <div class="flex gap-1">
+                      <button onclick="selectWaypoint(0)" class="data-wp-btn px-2 py-1 rounded text-[10px] font-mono-tech border border-zinc-800 text-zinc-400" data-idx="0">WP-01</button>
+                      <button onclick="selectWaypoint(1)" class="data-wp-btn px-2 py-1 rounded text-[10px] font-mono-tech border border-cyan-500/60 bg-cyan-500/15 text-cyan-300 font-semibold" data-idx="1">WP-02</button>
+                      <button onclick="selectWaypoint(2)" class="data-wp-btn px-2 py-1 rounded text-[10px] font-mono-tech border border-zinc-800 text-zinc-400" data-idx="2">WP-03</button>
+                      <button onclick="selectWaypoint(3)" class="data-wp-btn px-2 py-1 rounded text-[10px] font-mono-tech border border-zinc-800 text-zinc-400" data-idx="3">WP-04</button>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+                    <div class="bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-2">
+                      <div class="text-[10px] font-mono-tech text-cyan-400 mb-0.5">Mars Trek: Relief &amp; Thermal Inertia</div>
+                      <div id="dataWpTerrain" class="text-zinc-200 leading-snug">Elev -2410 m • Slope 6.4° • Rover: 245 m • 310 tiu.</div>
+                    </div>
+                    <div class="bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-2">
+                      <div class="text-[10px] font-mono-tech text-purple-400 mb-0.5">Mars Trek &amp; USGS: Mineralogy</div>
+                      <div id="dataWpMineral" class="text-zinc-200 leading-snug">Fe/Mg Smectite Clay + Hematite (2.30 µm).</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-2 bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-2 text-[11px]">
+                    <div class="text-[10px] font-mono-tech text-emerald-400 mb-0.5">Curiosity Proposed Path: Science &amp; Sample Mass</div>
+                    <p id="dataWpScience" class="text-zinc-200 leading-snug">Collect +2.5 kg lacustrine mudstone core to analyze hydrated phyllosilicates.</p>
+                  </div>
+
+                  <!-- MOLA Topographic Cross-Section Profile (Relocated from Map to Declutter 16:9 Viewport) -->
+                  <div class="mt-2 bg-zinc-950/80 border border-zinc-800/80 rounded-lg px-2.5 py-1.5">
+                    <div class="flex items-center justify-between text-[9px] font-mono-tech text-cyan-300/90 mb-0.5">
+                      <span>MARS TREK • MOLA ELEVATION PROFILE (-2440m to -2385m)</span>
+                      <span class="text-zinc-400">940m Traverse (+55m Ascent)</span>
+                    </div>
+                    <svg id="elevationSvg" viewBox="0 0 600 58" class="w-full h-[34px] block"></svg>
+                  </div>
+                </div>
+
+                <div class="pt-1.5 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono-tech">
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <span class="text-zinc-500">5 Mandatory Sources:</span>
+                    <a href="https://trek.nasa.gov/mars/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">Mars Trek</a>
+                    <span class="text-zinc-700">•</span>
+                    <a href="https://astrogeology-usgs.hub.arcgis.com/pages/interactive-maps-mars" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">USGS</a>
+                    <span class="text-zinc-700">•</span>
+                    <a href="https://science.nasa.gov/resource/curiositys-proposed-path-up-mount-sharp/" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:underline">Curiosity Path</a>
+                    <span class="text-zinc-700">•</span>
+                    <a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">Worldview</a>
+                    <span class="text-zinc-700">•</span>
+                    <a href="https://mars.nasa.gov/mars2020/multimedia/raw-images/" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline">Mars 2020 Raw Images</a>
+                  </div>
+                  <button onclick="openBriefModal()" class="text-cyan-300 hover:underline">Mission Brief</button>
+                </div>
+              </div>
+
+              <!-- Surface Visual Preview (5 columns — Mars 2020 Raw Images Analog Standard) -->
+              <div class="lg:col-span-5 bg-zinc-900/90 border border-zinc-800 rounded-xl p-3 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-[11px] font-semibold text-white">Surface Texture (Mars 2020 Raw Images)</span>
+                    <span class="text-[9px] font-mono-tech text-purple-300 bg-purple-500/10 border border-purple-500/30 px-1.5 py-0.5 rounded">Analog Standard</span>
+                  </div>
+                  <div id="dataRawSvgBox" class="rounded-lg border border-zinc-800 overflow-hidden bg-zinc-950"></div>
+                  <div id="dataRawTitle" class="text-[11px] font-semibold text-white mt-2">Mars 2020 Raw Images — Stratified Mudstone</div>
+                  <p id="dataRawDesc" class="text-[10px] text-zinc-400 mt-0.5 leading-snug">Fine fractured sedimentary laminae cross-cut by calcium sulfate veins.</p>
+                </div>
+                <div id="dataRawId" class="text-[9px] font-mono-tech text-zinc-500 border-t border-zinc-800/80 pt-1.5 mt-1.5">
+                  Analog Texture Library: mars.nasa.gov/mars2020/multimedia/raw-images/
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+
+        <!-- RIGHT BEZEL: SINGLE PHYSICAL ANALOG HARDWARE BUTTON (FOR GLOVED EVA OPERATION) -->
+        <div class="flex md:flex-col items-center justify-center gap-2 px-1 py-1 select-none">
+          <span class="text-[9px] font-mono-tech uppercase tracking-widest text-zinc-500 md:[writing-mode:vertical-rl] md:rotate-180">FOREARM BEZEL</span>
+          <button id="btnPhysicalBezel" onclick="pressAnalogBezelButton()" class="analog-bezel-btn" title="Physical Analog Bezel Button — Press with EVA Glove to switch between 16:9 Clean Map and Essential Data (Voice: 'switch LCD')">
+            <div id="bezelBtnLed" class="w-6 h-6 rounded-full border-2 border-emerald-400 bg-emerald-500/20 flex items-center justify-center transition-all">
+              <i id="bezelBtnIcon" class="fa-solid fa-repeat text-[11px] text-emerald-300"></i>
+            </div>
+          </button>
+          <span id="bezelModeLabel" class="text-[9px] font-mono-tech font-bold uppercase tracking-wider text-emerald-400 text-center leading-tight">MAP<br/>16:9</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- EXTERNAL MANIPULATION & DEMO DECK (OUTSIDE SUIT DISPLAY HARDWARE)     -->
+    <!-- ===================================================================== -->
+    <div id="externalControlDeck" class="max-w-[1060px] mx-auto mt-3 pt-2.5 border-t border-dashed border-zinc-800/90">
+      <div class="bg-zinc-950/75 border border-zinc-800/80 rounded-2xl px-3.5 py-2.5 flex flex-col gap-2.5">
+        
+        <!-- Clear Hardware Separation Banner -->
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-[9px] font-mono-tech uppercase tracking-widest text-amber-300 font-semibold">
+              <i class="fa-solid fa-sliders mr-1"></i>Outside Suit Display • External Support &amp; Hazard Simulator
+            </span>
+            <span class="text-[11px] text-zinc-400 hidden sm:inline">
+              Manual controls for judges &amp; live scenario testing (in EVA, operated via Voice or Forearm Analog Button).
+            </span>
+          </div>
+          <button onclick="pressAnalogBezelButton()" class="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-[10px] font-mono-tech text-cyan-300 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-hand-pointer"></i> Simulate Analog Bezel Press (Map ⇄ Data)
+          </button>
+        </div>
+
+        <!-- Row 1: Waypoints + NASA Layers + Pan/Zoom -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5">
+          
+          <!-- 1. Quick Waypoint Selector -->
+          <div class="flex flex-wrap items-center gap-1">
+            <span class="text-[10px] font-mono-tech uppercase text-zinc-500 mr-1">Waypoints:</span>
+            <button onclick="selectWaypoint(0)" class="ext-wp-btn px-2.5 py-1 rounded-lg text-[11px] font-mono-tech border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white transition" data-idx="0">WP-01 Rover (0m)</button>
+            <button onclick="selectWaypoint(1)" class="ext-wp-btn px-2.5 py-1 rounded-lg text-[11px] font-mono-tech border border-cyan-500/60 bg-cyan-500/15 text-cyan-300 font-semibold transition" data-idx="1">WP-02 Murray (245m)</button>
+            <button onclick="selectWaypoint(2)" class="ext-wp-btn px-2.5 py-1 rounded-lg text-[11px] font-mono-tech border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white transition" data-idx="2">WP-03 Stimson (565m)</button>
+            <button onclick="selectWaypoint(3)" class="ext-wp-btn px-2.5 py-1 rounded-lg text-[11px] font-mono-tech border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white transition" data-idx="3">WP-04 Boxwork (940m)</button>
+          </div>
+
+          <!-- 2. NASA Science Layer Toggles + Auxiliary Satellite Background Toggle (Strictly Mapped to the 5 Mandatory NASA Sources) -->
+          <div class="flex flex-wrap items-center gap-1">
+            <span class="text-[10px] font-mono-tech uppercase text-zinc-500 mr-1">Map &amp; NASA Layers:</span>
+            <button id="ext-chip-background" onclick="toggleLayer('background')" class="layer-chip on-background" title="Voice activation key: 'background' or 'plano de fundo' — Toggles Satellite DEM vs. High-Contrast Vector Mode">
+              <i class="fa-solid fa-satellite"></i>
+              <span id="extBgBtnText">Background / Plano de Fundo: ON</span>
+            </button>
+            <button id="ext-chip-topo" onclick="toggleLayer('topo')" class="layer-chip">Mars Trek: Topo</button>
+            <button id="ext-chip-usgs" onclick="toggleLayer('usgs')" class="layer-chip">USGS: Geology</button>
+            <button id="ext-chip-thermal" onclick="toggleLayer('thermal')" class="layer-chip on-thermal">Mars Trek: Thermal</button>
+            <button id="ext-chip-spectral" onclick="toggleLayer('spectral')" class="layer-chip on-spectral">Mars Trek: Spectral</button>
+            <button id="ext-chip-curiosity" onclick="toggleLayer('curiosity')" class="layer-chip on-curiosity">Curiosity Path</button>
+          </div>
+
+          <!-- 3. Map Pan & Zoom Manipulation -->
+          <div class="flex items-center gap-1">
+            <div class="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-0.5 font-mono-tech">
+              <button onclick="panMap(-55, 0)" class="px-2 py-0.5 text-[10px] text-zinc-300 hover:text-white hover:bg-zinc-800 rounded" title="Pan West (Left)">◀</button>
+              <button onclick="panMap(0, -40)" class="px-2 py-0.5 text-[10px] text-zinc-300 hover:text-white hover:bg-zinc-800 rounded" title="Pan North (Up)">▲</button>
+              <button onclick="panMap(0, 40)" class="px-2 py-0.5 text-[10px] text-zinc-300 hover:text-white hover:bg-zinc-800 rounded" title="Pan South (Down)">▼</button>
+              <button onclick="panMap(55, 0)" class="px-2 py-0.5 text-[10px] text-zinc-300 hover:text-white hover:bg-zinc-800 rounded" title="Pan East (Right)">▶</button>
+              <button onclick="resetMapView()" class="px-2 py-0.5 text-[10px] text-cyan-300 hover:bg-zinc-800 rounded border-l border-zinc-800 ml-0.5" title="Center Map">Center</button>
+            </div>
+            <div class="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-0.5 font-mono-tech">
+              <button id="btnZoomOut" onclick="adjustMapZoom(-0.25)" class="px-2 py-0.5 text-xs text-zinc-300 hover:text-white hover:bg-zinc-800 rounded font-bold" title="Zoom Out">−</button>
+              <span id="mapZoomLabel" class="px-2 text-[10px] text-cyan-300 font-semibold min-w-[42px] text-center">100%</span>
+              <button id="btnZoomIn" onclick="adjustMapZoom(0.25)" class="px-2 py-0.5 text-xs text-zinc-300 hover:text-white hover:bg-zinc-800 rounded font-bold" title="Zoom In">+</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Row 2: Live Problem Scenario Simulators + Autonomous Pathplanner Presets -->
+        <div class="pt-2 border-t border-zinc-800/70 space-y-2">
+          <!-- Autonomous Pathplanner Live Decision Bar & 1-Click Scenario Presets -->
+          <div class="flex flex-wrap items-center justify-between gap-2 bg-zinc-900/90 border border-zinc-800 rounded-xl px-3 py-1.5">
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] font-mono-tech uppercase tracking-wider px-1.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 font-bold">
+                <i class="fa-solid fa-microchip mr-1"></i>Autonomous Pathplanner
+              </span>
+              <span id="extSolverDecisionText" class="text-[11px] font-mono-tech font-semibold text-emerald-300">
+                MODE 1: Nominal Ridge Ascent → WP-04 Reachable (940m &lt; PNR 1010m)
+              </span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1">
+              <span class="text-[9px] font-mono-tech uppercase text-zinc-500 mr-1">Auto-Sim Presets:</span>
+              <button onclick="applySimulationPreset('nominal')" class="px-2 py-0.5 rounded text-[10px] font-mono-tech border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/50 transition">1. Nominal (1010m)</button>
+              <button onclick="applySimulationPreset('cautious')" class="px-2 py-0.5 rounded text-[10px] font-mono-tech border border-amber-500/40 bg-amber-950/40 text-amber-300 hover:bg-amber-900/50 transition">2. Heavy / Haze</button>
+              <button onclick="applySimulationPreset('shelter')" class="px-2 py-0.5 rounded text-[10px] font-mono-tech border border-sky-500/40 bg-sky-950/40 text-sky-300 hover:bg-sky-900/50 transition">3. SEP Scarp Shelter</button>
+              <button onclick="applySimulationPreset('abort')" class="px-2 py-0.5 rounded text-[10px] font-mono-tech border border-rose-500/40 bg-rose-950/40 text-rose-300 hover:bg-rose-900/50 transition">4. Critical Abort</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <!-- Simulator 1: Suit Base Load + Sample Collection -->
+            <div class="bg-zinc-900/75 border border-zinc-800/90 rounded-xl px-3 py-1.5 flex items-center justify-between gap-2">
+              <div class="min-w-[125px]">
+                <div class="text-[9px] font-mono-tech uppercase text-zinc-400">1. Suit &amp; Sample Load</div>
+                <div id="extLoadLabel" class="text-[11px] font-mono-tech font-bold text-cyan-300">22 kg (Total: 24.5 kg)</div>
+              </div>
+              <input id="extPayloadSlider" type="range" min="12" max="42" value="22" oninput="updateMissionState('ext')" class="w-full accent-cyan-400 h-1.5 cursor-pointer" />
+            </div>
+
+            <!-- Simulator 2: Radiation / Space Weather (Curiosity / Mars Trek) -->
+            <div class="bg-zinc-900/75 border border-zinc-800/90 rounded-xl px-3 py-1.5 flex items-center justify-between gap-2">
+              <span class="text-[9px] font-mono-tech uppercase text-zinc-400 whitespace-nowrap">2. Radiation:</span>
+              <select id="extSpaceWeatherSelect" onchange="updateMissionState('ext')" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-2 py-1 text-[11px] font-mono-tech text-white focus:outline-none focus:border-cyan-400">
+                <option value="nominal">Nominal GCR (0.24 mSv/h)</option>
+                <option value="elevated">Elevated Flux (0.68 mSv/h)</option>
+                <option value="sep">⚠ SEP Storm — Scarp Shelter (1.45 mSv/h)</option>
+              </select>
+            </div>
+
+            <!-- Simulator 3: Atmosphere & Thermal Optical Depth (NASA Worldview Tau) -->
+            <div class="bg-zinc-900/75 border border-zinc-800/90 rounded-xl px-3 py-1.5 flex items-center justify-between gap-2">
+              <span class="text-[9px] font-mono-tech uppercase text-zinc-400 whitespace-nowrap">3. Atmosphere:</span>
+              <select id="extAtmosphereSelect" onchange="updateMissionState('ext')" class="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-2 py-1 text-[11px] font-mono-tech text-white focus:outline-none focus:border-cyan-400">
+                <option value="clear">Clear Sky — Tau 0.45 τ (-54°C)</option>
+                <option value="haze">Dust Haze — Tau 1.25 τ (-61°C)</option>
+                <option value="dust">⚠ Dust Storm — Tau 2.60 τ (-68°C)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCIENTIFIC MISSION BRIEF & 5 MANDATORY NASA SOURCES MODAL -->
+  <div id="briefModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl max-w-2xl w-full max-h-[88vh] overflow-y-auto p-5 space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div>
+          <h3 class="text-base font-bold text-white">E.S.G. Mount Sharp — Extraterrestrial Survival Guide</h3>
+          <p class="text-[11px] font-mono-tech text-cyan-400">NASA Space Apps Challenge 2026 • Interplanetary Survival Guide: Martian Map</p>
+        </div>
+        <button onclick="closeBriefModal()" class="text-xs font-mono-tech bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 px-3 py-1.5 rounded-lg text-zinc-200">Close</button>
+      </div>
+      <div class="space-y-3.5 text-xs text-zinc-300 leading-relaxed">
+        <div class="bg-zinc-900/70 border border-zinc-800 rounded-xl p-3">
+          <strong class="text-cyan-400 block mb-1">Q1. Target Martian Region &amp; Scientific Objective</strong>
+          Lower northwestern flank of <strong>Mount Sharp (Aeolis Mons, Gale Crater)</strong>. The pressurized <strong>EVA Rover</strong> stages at <strong>WP-01 (Lower Murray Plain, -2440 m, 3.1° slope, 325 tiu)</strong> because unconsolidated sand (135 tiu) and a steep 16.8° scarp ahead block wheeled vehicles. Astronauts execute a 940 m foot traverse across the ancient lakebed-to-sulfate transition to sample the <strong>Boxwork Ridges (WP-04, -2385 m)</strong>—polygonal cemented fractures formed by late-stage subsurface groundwater.
+        </div>
+        <div class="bg-zinc-900/70 border border-zinc-800 rounded-xl p-3">
+          <strong class="text-amber-400 block mb-1">Q2. Strict Integration of the 5 Mandatory NASA Data Sources (Confidence &ge; 95%)</strong>
+          <ul class="list-disc pl-4 space-y-1.5 text-zinc-300">
+            <li><a href="https://trek.nasa.gov/mars/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-semibold hover:underline">1. NASA Mars Trek (trek.nasa.gov/mars):</a> Topographic contours (-2450 m to -2375 m), critical 16.8° scarp hazard, 8.5° northern shelter ridge, thermal inertia trafficability (325 tiu bedrock vs. 135 tiu sand), and spectral mineralogy layers.</li>
+            <li><a href="https://astrogeology-usgs.hub.arcgis.com/pages/interactive-maps-mars" target="_blank" rel="noopener noreferrer" class="text-amber-400 font-semibold hover:underline">2. USGS Astrogeology Interactive Maps:</a> Stratigraphic contacts between the <em>Murray Formation (Mudstone)</em>, <em>Stimson Sandstone Unconformity</em>, and <em>Sulfate-Bearing Unit</em>.</li>
+            <li><a href="https://science.nasa.gov/resource/curiositys-proposed-path-up-mount-sharp/" target="_blank" rel="noopener noreferrer" class="text-orange-400 font-semibold hover:underline">3. Curiosity's Proposed Path Up Mount Sharp:</a> Reference rover ascent trajectory from clay/hematite strata to the Boxwork sulfate ridges and surface radiation/environmental baseline.</li>
+            <li><a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener noreferrer" class="text-sky-400 font-semibold hover:underline">4. NASA Worldview (worldview.earthdata.nasa.gov):</a> Multi-layer atmospheric optical depth (Dust Tau &tau;) and visibility constraint architecture.</li>
+            <li><a href="https://mars.nasa.gov/mars2020/multimedia/raw-images/" target="_blank" rel="noopener noreferrer" class="text-purple-400 font-semibold hover:underline">5. Mars 2020 Multimedia Raw Images:</a> Integrated as an <em>Analog Surface Texture Library</em> correlated with Gale Crater lithologies to train and prepare astronauts for boot traction and outcrop sampling at each station.</li>
+          </ul>
+        </div>
+        <div class="bg-zinc-900/70 border border-zinc-800 rounded-xl p-3">
+          <strong class="text-emerald-400 block mb-1">Q3. Astronaut Mobility, Safety &amp; Dual Point-of-No-Return Architecture</strong>
+          <ul class="list-disc pl-4 space-y-1 text-zinc-300">
+            <li><strong>Locked Departure PNR (1010 m) + Live Contingency Envelope:</strong> The nominal Point of No Return (1010 m) encompasses the primary WP-04 target (940 m) at departure and remains locked once the traverse starts; if a mid-traverse hazard (SEP storm, dust haze/storm, or overweight load) degrades O₂ safety margins below 940 m, an inner <em>Contingency Walkback Limit</em> appears and the autonomous pathplanner cuts off unreachable stations and reroutes the astronaut.</li>
+            <li><strong>Dual EVA Routes:</strong> Automatic rerouting from the Primary EVA Route to the Northern Scarp Shelter Alternate Route (8.5° max grade) during Solar Energetic Particle (SEP) events, dust storms, or suit overweight states.</li>
+            <li><strong>Gloved &amp; Hands-Free Operation:</strong> Minimalist symbolic Helmet Visor HUD with dynamic terrain/dust rendering and audio chimes, a decluttered 16:9 Forearm Map Display, bilingual Voice Commands, and a single physical analog bezel button.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. GLOBAL SYNCHRONIZED EVA STATE (NO BPM — FOCUSED ON O2, LOAD & ROVER)
+    // =========================================================================
+    const state = {
+      activeView: 'lcd-map',
+      currentWpIdx: 1,
+      payloadKg: 22,
+      maxSafeSlope: 15.1,
+      spaceWeather: 'nominal',
+      atmosphere: 'clear',
+      mapZoom: 1.0,
+      mapPanX: 0,
+      mapPanY: 0,
+      turnaroundAlertDismissed: false,
+      wasAlertSignature: '',
+      lockedSafeReturnRadiusM: 1010, // Nominal Point of No Return (1010m > WP-04 at 940m), locked once EVA traverse begins (currentWpIdx > 0)
+      layers: {
+        background: true, // Satellite Shaded-Relief DEM Basemap (toggleable via 'background' / 'plano de fundo')
+        topo: false,      // Disabled by default on system init for clean visual hierarchy
+        usgs: false,      // Disabled by default on system init for clean visual hierarchy
+        thermal: true,
+        spectral: true,
+        curiosity: true,
+        return: true // Mandatory Rover walkback perimeter always active
+      }
+    };
+
+    // Total consistent traverse distance: 940 m from EVA Rover (WP-01) to Boxwork Ridges (WP-04)
+    const TOTAL_ROUTE_METERS = 940;
+    const waypoints = [
+      {
+        id: 'WP-01',
+        name: 'EVA Rover Staging (Lower Murray Plain)',
+        shortName: 'EVA Rover (Base)',
+        x: 75,
+        y: 232,
+        distFromBaseM: 0,
+        distToGoalM: 940,
+        heading: '052° NE',
+        elev: -2440,
+        slope: 3.1,
+        tiu: 325,
+        sampleKg: 0.0,
+        sampleTimeMin: 0,
+        confidencePct: 98.6,
+        usgs: 'Lower Murray Formation (Laminated Mudstone)',
+        mineral: 'Olivine Basalt + Consolidated Ferric Surface Dust',
+        science: 'Pressurized EVA Rover staging point (firm bedrock 325 tiu, 3.1° slope). Foot traverse departure.',
+        rawTitle: 'Mars 2020 Raw Images — Consolidated Bedrock (Rover Staging)',
+        rawDesc: 'Flat indurated mudstone pavement where the EVA Rover anchors as primary shelter and O₂ reserve.',
+        rawId: 'Source: mars.nasa.gov/mars2020/multimedia/raw-images/ (Bedrock Reference)',
+        visualType: 'flat'
+      },
+      {
+        id: 'WP-02',
+        name: 'Murray Terrace (Lacustrine Sampling)',
+        shortName: 'Murray Terrace',
+        x: 195,
+        y: 180,
+        distFromBaseM: 245,
+        distToGoalM: 695,
+        heading: '048° NE',
+        elev: -2410,
+        slope: 6.4,
+        tiu: 310,
+        sampleKg: 2.5,
+        sampleTimeMin: 15,
+        confidencePct: 97.4,
+        usgs: 'Pahrump Hills Member / Murray Formation',
+        mineral: 'Fe/Mg Smectite Clay + Hematite (2.30 µm band)',
+        science: 'Collect +2.5 kg lacustrine mudstone core to analyze hydrated phyllosilicates formed in ancient neutral water.',
+        rawTitle: 'Mars 2020 Raw Images — Stratified Lacustrine Mudstone',
+        rawDesc: 'Fine fractured sedimentary laminae cross-cut by light-toned calcium sulfate veins.',
+        rawId: 'Source: mars.nasa.gov/mars2020/multimedia/raw-images/ (Mudstone Reference)',
+        visualType: 'layers'
+      },
+      {
+        id: 'WP-03',
+        name: 'Stimson Overlook (Scarp Bypass)',
+        shortName: 'Stimson Overlook',
+        x: 315,
+        y: 112,
+        distFromBaseM: 565,
+        distToGoalM: 375,
+        heading: '078° ENE',
+        elev: -2396,
+        slope: 8.4,
+        tiu: 295,
+        sampleKg: 4.5,
+        sampleTimeMin: 25,
+        confidencePct: 96.2,
+        usgs: 'Siccar Point Unconformity — Murray / Stimson Sandstone',
+        mineral: 'Cross-Bedded Eolian Sandstone + Crystalline Iron Oxides',
+        science: 'Cumulative sample load +4.5 kg. Safe human contour (8.4°) bypassing the critical 16.8° scarp and loose drift sand (135 tiu).',
+        rawTitle: 'Mars 2020 Raw Images — Cross-Bedded Sandstone Scarp',
+        rawDesc: 'Indurated sandstone bench providing natural topographic shielding against solar particle events (SEP).',
+        rawId: 'Source: mars.nasa.gov/mars2020/multimedia/raw-images/ (Sandstone Scarp)',
+        visualType: 'scarp'
+      },
+      {
+        id: 'WP-04',
+        name: 'Boxwork Ridges (Primary Science Target)',
+        shortName: 'Boxwork Ridges',
+        x: 475,
+        y: 95,
+        distFromBaseM: 940,
+        distToGoalM: 0,
+        heading: '090° E',
+        elev: -2385,
+        slope: 7.9,
+        tiu: 345,
+        sampleKg: 6.5,
+        sampleTimeMin: 40,
+        confidencePct: 95.8,
+        usgs: 'Sulfate-Bearing Unit — Boxwork Fracture Network',
+        mineral: 'Polyhydrated Sulfates + Gypsum/Bassanite Veins (1.94 µm)',
+        science: 'Cumulative sample load +6.5 kg across polygonal ridges mineralized by ancient subsurface fluid flow.',
+        rawTitle: 'Mars 2020 Raw Images & Curiosity Path — Polygonal Boxwork Network',
+        rawDesc: 'Erosion-resistant cemented ridges forming high-traction meter-scale polygons (345 tiu).',
+        rawId: 'Source: mars.nasa.gov/mars2020/multimedia/raw-images/ & Curiosity Path',
+        visualType: 'boxwork'
+      }
+    ];
+
+    // =========================================================================
+    // 2. VIEW SWITCHING, PHYSICAL BEZEL BUTTON & MATHEMATICAL ENGINE
+    // =========================================================================
+    function switchView(viewName) {
+      state.activeView = viewName;
+      ['visor', 'lcd-map', 'lcd-data'].forEach(v => {
+        const viewEl = document.getElementById(`view-${v}`);
+        const tabEl = document.getElementById(`tab-${v}`);
+        if (viewEl) viewEl.classList.toggle('hidden', v !== viewName);
+        if (tabEl) tabEl.classList.toggle('active', v === viewName);
+      });
+
+      // Show Forearm Sleeve & Bezel Mount when viewing either 16:9 Wrist LCD mode
+      const forearmMount = document.getElementById('forearmMount');
+      if (forearmMount) {
+        forearmMount.classList.toggle('hidden', viewName === 'visor');
+      }
+
+      // Update Physical Analog Bezel Button LED & Mode Label
+      const bezelLed = document.getElementById('bezelBtnLed');
+      const bezelIcon = document.getElementById('bezelBtnIcon');
+      const bezelModeLabel = document.getElementById('bezelModeLabel');
+      if (viewName === 'lcd-data') {
+        if (bezelLed) bezelLed.className = 'w-6 h-6 rounded-full border-2 border-amber-400 bg-amber-500/20 shadow-[0_0_8px_#fbbf24] flex items-center justify-center transition-all';
+        if (bezelIcon) bezelIcon.className = 'fa-solid fa-repeat text-[11px] text-amber-300';
+        if (bezelModeLabel) {
+          bezelModeLabel.innerHTML = 'DATA<br/>16:9';
+          bezelModeLabel.className = 'text-[9px] font-mono-tech font-bold uppercase tracking-wider text-amber-400 text-center leading-tight';
+        }
+      } else {
+        if (bezelLed) bezelLed.className = 'w-6 h-6 rounded-full border-2 border-emerald-400 bg-emerald-500/20 shadow-[0_0_8px_#34d399] flex items-center justify-center transition-all';
+        if (bezelIcon) bezelIcon.className = 'fa-solid fa-repeat text-[11px] text-emerald-300';
+        if (bezelModeLabel) {
+          bezelModeLabel.innerHTML = 'MAP<br/>16:9';
+          bezelModeLabel.className = 'text-[9px] font-mono-tech font-bold uppercase tracking-wider text-emerald-400 text-center leading-tight';
+        }
+      }
+
+      renderAll();
+    }
+
+    function pressAnalogBezelButton() {
+      // Tactile hardware click feedback
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) {
+          const ctx = new AudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, ctx.currentTime);
+          gain.gain.setValueAtTime(0.06, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.045);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.05);
+        }
+      } catch (e) {}
+
+      const nextLcd = state.activeView === 'lcd-map' ? 'lcd-data' : 'lcd-map';
+      switchView(nextLcd);
+    }
+
+    function selectWaypoint(idx) {
+      state.currentWpIdx = idx;
+      state.turnaroundAlertDismissed = false;
+      renderAll();
+    }
+
+    function dismissTurnaroundPopup() {
+      state.turnaroundAlertDismissed = true;
+      ['symTurnaround', 'symOverweight', 'symEnvHazard', 'symRouteChange'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+    }
+
+    function playTurnaroundAlertTone(forcePlay = false) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const freqs = forcePlay ? [740, 980, 740] : [660, 880, 660, 880];
+        freqs.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.13);
+          gain.gain.setValueAtTime(0.085, ctx.currentTime + i * 0.13);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.13 + 0.11);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + i * 0.13);
+          osc.stop(ctx.currentTime + i * 0.13 + 0.12);
+        });
+      } catch (e) {}
+    }
+
+    function computeMetrics() {
+      const wp = waypoints[state.currentWpIdx];
+
+      // Base suit load + cumulative geological sample mass at active waypoint
+      const basePayloadKg = state.payloadKg;
+      const sampleKg = wp.sampleKg;
+      const totalLoadKg = +(basePayloadKg + sampleKg).toFixed(1);
+
+      // Safe slope limit decreases as total carried mass (suit + samples) increases
+      const maxSafeSlope = +(Math.max(9.5, 20.2 - totalLoadKg * 0.21)).toFixed(1);
+      const isOverweight = totalLoadKg > 35.0 || wp.slope > maxSafeSlope;
+
+      // O2 consumption rate (L/min) driven by total load, MOLA slope, and THEMIS soil firmness (no BPM)
+      const slopeFactor = wp.slope * 0.018;
+      const loadFactor = (totalLoadKg - 12) * 0.0095;
+      const terrainFactor = wp.tiu < 250 ? 0.12 : 0.0;
+      const o2Rate = +(0.84 + slopeFactor + loadFactor + terrainFactor).toFixed(2);
+
+      // Remaining PLSS O2 autonomy accounting for station scientific sampling duration & environmental stress
+      const envO2PenaltyMin = (state.spaceWeather === 'sep' ? 34 : state.spaceWeather === 'elevated' ? 14 : 0) +
+                              (state.atmosphere === 'dust' ? 38 : state.atmosphere === 'haze' ? 15 : 0);
+      const rawAutonomyMin = Math.round(350 / o2Rate) - wp.sampleTimeMin - envO2PenaltyMin;
+      const autonomyMin = Math.max(85, rawAutonomyMin);
+      const reservePct = Math.max(15, Math.min(96, Math.round(((autonomyMin - 50) / 290) * 100)));
+
+      // Dual Point-of-No-Return Architecture:
+      // Nominal Departure PNR = 1010 m (> WP-04 at 940 m, so nominal mission is 100% viable at launch).
+      // Any increase in Suit Load, Radiation, or Dust Optical Depth immediately erodes the Live Contingency Walkback Limit.
+      const loadPenaltyM = basePayloadKg > 22
+        ? Math.round((basePayloadKg - 22) * 16)
+        : Math.round((basePayloadKg - 22) * 3);
+      const weatherPenaltyM = state.spaceWeather === 'sep' ? 275 : state.spaceWeather === 'elevated' ? 115 : 0;
+      const atmPenaltyM = state.atmosphere === 'dust' ? 285 : state.atmosphere === 'haze' ? 105 : 0;
+
+      const rawCurrentEnvelopeM = Math.max(
+        310,
+        Math.min(1050, Math.round(1010 - loadPenaltyM - weatherPenaltyM - atmPenaltyM))
+      );
+
+      if (state.currentWpIdx === 0) {
+        state.lockedSafeReturnRadiusM = rawCurrentEnvelopeM;
+      }
+      const safeReturnRadiusM = state.lockedSafeReturnRadiusM;
+      const liveContingencyRadiusM = rawCurrentEnvelopeM;
+      const hasContingencyDrop = liveContingencyRadiusM !== safeReturnRadiusM;
+      const effectiveSafeLimitM = Math.min(safeReturnRadiusM, liveContingencyRadiusM);
+      const isTurnaroundExceeded = wp.distFromBaseM > effectiveSafeLimitM;
+
+      // Autonomous 4-Mode Pathplanner & Hazard Solver
+      const wp4Reachable = effectiveSafeLimitM >= 940;
+      const wp3Reachable = effectiveSafeLimitM >= 565;
+
+      let routeMode = 'nominal'; // 'nominal' | 'cautious' | 'shelter' | 'abort'
+      let solverReason = 'Optimal firm-bedrock ascent to WP-04 (940m < PNR 1010m).';
+
+      if (!wp3Reachable) {
+        routeMode = 'abort';
+        solverReason = `CRITICAL O₂ LIMIT (${effectiveSafeLimitM}m < WP-03 565m) → Mandatory Abort Vector to EVA Rover!`;
+      } else if (state.spaceWeather === 'sep' || state.atmosphere === 'dust' || basePayloadKg >= 34 || isOverweight) {
+        routeMode = 'shelter';
+        const hazardCauses = [];
+        if (state.spaceWeather === 'sep') hazardCauses.push('SEP 1.45 mSv/h');
+        if (state.atmosphere === 'dust') hazardCauses.push('Dust Tau 2.60');
+        if (basePayloadKg >= 34 || isOverweight) hazardCauses.push(`Load ${totalLoadKg}kg (Max Slope ${maxSafeSlope}°)`);
+        solverReason = `${hazardCauses.join(' + ')} → Auto-Rerouted to N. Scarp Shelter (8.5°)${!wp4Reachable ? ' + WP-04 Cutoff at WP-03 (565m)' : ''}.`;
+      } else if (state.spaceWeather === 'elevated' || state.atmosphere === 'haze' || basePayloadKg >= 26) {
+        routeMode = 'cautious';
+        const modCauses = [];
+        if (state.spaceWeather === 'elevated') modCauses.push('Elevated Flux 0.68 mSv/h');
+        if (state.atmosphere === 'haze') modCauses.push('Dust Haze Tau 1.25');
+        if (basePayloadKg >= 26) modCauses.push(`Load ${totalLoadKg}kg`);
+        solverReason = `${modCauses.join(' + ')} → Low-Grade Contour (6.4°)${!wp4Reachable ? ` + WP-04 Cutoff (Limit ${effectiveSafeLimitM}m < 940m)` : ''}.`;
+      }
+
+      const needsAltRoute = routeMode !== 'nominal';
+      const recommendedRoute = needsAltRoute ? 'alt' : 'primary';
+
+      // Data Confidence Index (always >= 95.0%, adjusted by optical visibility and orbital-surface correlation)
+      const atmConfDelta = state.atmosphere === 'dust' ? -0.7 : state.atmosphere === 'haze' ? -0.3 : 0;
+      const confidencePct = +(Math.max(95.1, wp.confidencePct + atmConfDelta)).toFixed(1);
+
+      return {
+        wp,
+        basePayloadKg,
+        sampleKg,
+        totalLoadKg,
+        maxSafeSlope,
+        isOverweight,
+        o2Rate,
+        autonomyMin,
+        reservePct,
+        safeReturnRadiusM,
+        liveContingencyRadiusM,
+        hasContingencyDrop,
+        effectiveSafeLimitM,
+        isTurnaroundExceeded,
+        wp4Reachable,
+        wp3Reachable,
+        routeMode,
+        solverReason,
+        needsAltRoute,
+        recommendedRoute,
+        confidencePct
+      };
+    }
+
+    function applySimulationPreset(preset) {
+      // Ensure locked PNR starts from standard 1010m departure baseline when testing mid-traverse scenarios
+      state.lockedSafeReturnRadiusM = 1010;
+      if (preset === 'nominal') {
+        state.payloadKg = 22;
+        state.spaceWeather = 'nominal';
+        state.atmosphere = 'clear';
+        if (state.currentWpIdx === 0) state.currentWpIdx = 1;
+      } else if (preset === 'cautious') {
+        state.payloadKg = 29;
+        state.spaceWeather = 'elevated';
+        state.atmosphere = 'haze';
+        if (state.currentWpIdx === 0) state.currentWpIdx = 1;
+      } else if (preset === 'shelter') {
+        state.payloadKg = 26;
+        state.spaceWeather = 'sep';
+        state.atmosphere = 'clear';
+        if (state.currentWpIdx === 0) state.currentWpIdx = 2;
+      } else if (preset === 'abort') {
+        state.payloadKg = 36;
+        state.spaceWeather = 'sep';
+        state.atmosphere = 'dust';
+        state.currentWpIdx = 2;
+      }
+      ['payloadSlider', 'extPayloadSlider'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = state.payloadKg;
+      });
+      ['spaceWeatherSelect', 'extSpaceWeatherSelect'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = state.spaceWeather;
+      });
+      ['atmosphereSelect', 'extAtmosphereSelect'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = state.atmosphere;
+      });
+      state.turnaroundAlertDismissed = false;
+      renderAll();
+    }
+
+    function updateMissionState(source) {
+      const payloadEl = document.getElementById('payloadSlider');
+      const swEl = document.getElementById('spaceWeatherSelect');
+      const atmEl = document.getElementById('atmosphereSelect');
+
+      const extPayloadEl = document.getElementById('extPayloadSlider');
+      const extSwEl = document.getElementById('extSpaceWeatherSelect');
+      const extAtmEl = document.getElementById('extAtmosphereSelect');
+
+      if (source === 'ext') {
+        if (extPayloadEl) state.payloadKg = Number(extPayloadEl.value);
+        if (extSwEl) state.spaceWeather = extSwEl.value;
+        if (extAtmEl) state.atmosphere = extAtmEl.value;
+        if (payloadEl) payloadEl.value = state.payloadKg;
+        if (swEl) swEl.value = state.spaceWeather;
+        if (atmEl) atmEl.value = state.atmosphere;
+      } else {
+        if (payloadEl) state.payloadKg = Number(payloadEl.value);
+        if (swEl) state.spaceWeather = swEl.value;
+        if (atmEl) state.atmosphere = atmEl.value;
+        if (extPayloadEl) extPayloadEl.value = state.payloadKg;
+        if (extSwEl) extSwEl.value = state.spaceWeather;
+        if (extAtmEl) extAtmEl.value = state.atmosphere;
+      }
+
+      state.turnaroundAlertDismissed = false;
+      renderAll();
+    }
+
+    // =========================================================================
+    // 3. MULTI-LAYER MAP CONTROLS, DRAG PAN & ZOOM (50% TO 200%)
+    // =========================================================================
+    function toggleLayer(key, forceState) {
+      if (key === 'return') {
+        state.layers.return = true; // Rover Safe Return remains locked active
+        return;
+      }
+      state.layers[key] = typeof forceState === 'boolean' ? forceState : !state.layers[key];
+      const chip = document.getElementById(`chip-${key}`);
+      if (chip) {
+        chip.classList.toggle(`on-${key}`, state.layers[key]);
+        chip.classList.toggle('active', state.layers[key]);
+      }
+      const extChip = document.getElementById(`ext-chip-${key}`);
+      if (extChip) {
+        extChip.classList.toggle(`on-${key}`, state.layers[key]);
+      }
+      if (key === 'background') {
+        const extBgBtnText = document.getElementById('extBgBtnText');
+        if (extBgBtnText) {
+          extBgBtnText.textContent = state.layers.background
+            ? 'Background / Plano de Fundo: ON'
+            : 'Background / Plano de Fundo: OFF';
+        }
+      }
+      renderMap();
+    }
+
+    function adjustMapZoom(delta) {
+      state.mapZoom = Math.max(0.5, Math.min(2.0, +(state.mapZoom + delta).toFixed(2)));
+      updateZoomControlsUI();
+      renderMap();
+    }
+
+    function panMap(dx, dy) {
+      state.mapPanX = Math.max(-280, Math.min(280, state.mapPanX + dx));
+      state.mapPanY = Math.max(-180, Math.min(180, state.mapPanY + dy));
+      renderMap();
+    }
+
+    function resetMapView() {
+      state.mapZoom = 1.0;
+      state.mapPanX = 0;
+      state.mapPanY = 0;
+      updateZoomControlsUI();
+      renderMap();
+    }
+
+    function updateZoomControlsUI() {
+      const label = document.getElementById('mapZoomLabel');
+      const btnOut = document.getElementById('btnZoomOut');
+      const btnIn = document.getElementById('btnZoomIn');
+      if (label) label.textContent = `${Math.round(state.mapZoom * 100)}%`;
+      if (btnOut) btnOut.disabled = state.mapZoom <= 0.5;
+      if (btnIn) btnIn.disabled = state.mapZoom >= 2.0;
+    }
+
+    let cachedOrbitalBasemapUrl = null;
+    function getMountSharpBasemapUrl() {
+      if (cachedOrbitalBasemapUrl) return cachedOrbitalBasemapUrl;
+      try {
+        const cw = 720, ch = 396;
+        const canvas = document.createElement('canvas');
+        canvas.width = cw;
+        canvas.height = ch;
+        const ctx = canvas.getContext('2d');
+        const img = ctx.createImageData(cw, ch);
+        const data = img.data;
+
+        // Deterministic pseudo-noise for stratified rock beds, yardangs & regolith micro-relief
+        function hash2d(ix, iy) {
+          const n = Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453123;
+          return n - Math.floor(n);
+        }
+        function smoothNoise(x, y) {
+          const ix = Math.floor(x), iy = Math.floor(y);
+          const fx = x - ix, fy = y - iy;
+          const u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);
+          const a = hash2d(ix, iy), b = hash2d(ix + 1, iy);
+          const c = hash2d(ix, iy + 1), d = hash2d(ix + 1, iy + 1);
+          return (a * (1 - u) + b * u) * (1 - v) + (c * (1 - u) + d * u) * v;
+        }
+        function fbm(x, y) {
+          return 0.55 * smoothNoise(x, y) + 0.30 * smoothNoise(x * 2.1, y * 2.1) + 0.15 * smoothNoise(x * 4.3, y * 4.3);
+        }
+
+        // Digital Elevation Model (DEM) in SVG coordinate space (-220..780, -130..420)
+        function sampleDEM(sx, sy) {
+          // Regional NE ascent up Mount Sharp (Aeolis Mons foothills)
+          let elev = (sx * 0.14 - sy * 0.22);
+          // Stratified sedimentary benches (Murray / Stimson / Sulfate terraces)
+          const strata = Math.sin((sx * 0.032 - sy * 0.048) + fbm(sx * 0.015, sy * 0.015) * 2.2);
+          elev += strata * 3.8;
+          // Multi-scale rocky outcrop roughness
+          elev += fbm(sx * 0.04, sy * 0.04) * 9.5 + fbm(sx * 0.11, sy * 0.11) * 3.2;
+
+          // Steep Southern Stimson Scarp (around x:320, y:148)
+          const dxScarp = (sx - 320) / 48, dyScarp = (sy - 148) / 22;
+          const dScarp = dxScarp * dxScarp + dyScarp * dyScarp;
+          if (dScarp < 1.8) {
+            elev += Math.exp(-dScarp * 1.6) * 14.0 * (sy < 148 ? 1 : -0.6);
+          }
+
+          // Northern Stimson Shelter Escarpment Ridge (around x:310, y:68)
+          const dxNorth = (sx - 315) / 85, dyNorth = (sy - 68) / 16;
+          const dNorth = dxNorth * dxNorth + dyNorth * dyNorth;
+          if (dNorth < 1.6) {
+            elev += Math.exp(-dNorth * 1.8) * 11.5;
+          }
+
+          // Boxwork Polygonal Ridges micro-relief at NE Plateau (cx=478, cy=92)
+          const dBox = Math.hypot((sx - 478) / 68, (sy - 92) / 44);
+          if (dBox < 1.2) {
+            const polyGrid = Math.abs(Math.sin(sx * 0.22 + sy * 0.14) * Math.cos(sx * 0.15 - sy * 0.24));
+            elev += (1 - dBox * 0.7) * (polyGrid < 0.18 ? 4.2 : -1.2);
+          }
+          return elev;
+        }
+
+        // Precompute elevation grid for fast hillshade normal calculation
+        const elevGrid = new Float32Array(cw * ch);
+        for (let py = 0; py < ch; py++) {
+          const sy = -130 + (py / ch) * 550;
+          for (let px = 0; px < cw; px++) {
+            const sx = -220 + (px / cw) * 1000;
+            elevGrid[py * cw + px] = sampleDEM(sx, sy);
+          }
+        }
+
+        // Render NW-illuminated HiRISE/MOLA shaded relief + geological surface albedo
+        const sunX = -0.68, sunY = -0.58, sunZ = 0.45;
+        for (let py = 0; py < ch; py++) {
+          const sy = -130 + (py / ch) * 550;
+          const pyUp = Math.max(0, py - 1), pyDn = Math.min(ch - 1, py + 1);
+          for (let px = 0; px < cw; px++) {
+            const sx = -220 + (px / cw) * 1000;
+            const pxLt = Math.max(0, px - 1), pxRt = Math.min(cw - 1, px + 1);
+
+            const dzdx = (elevGrid[py * cw + pxRt] - elevGrid[py * cw + pxLt]) * 0.55;
+            const dzdy = (elevGrid[pyDn * cw + px] - elevGrid[pyUp * cw + px]) * 0.55;
+            const invLen = 1.0 / Math.sqrt(dzdx * dzdx + dzdy * dzdy + 1.0);
+            const nx = -dzdx * invLen, ny = -dzdy * invLen, nz = invLen;
+            const shade = Math.max(0.18, Math.min(1.38, (nx * sunX + ny * sunY + nz * sunZ) * 1.45 + 0.22));
+
+            // Base Martian ferric-basaltic mineralogical color by geological sector
+            const hNorm = Math.max(0, Math.min(1, (sx * 0.65 + (290 - sy) * 0.9) / 620));
+            let r = 46 + hNorm * 58;
+            let g = 27 + hNorm * 31;
+            let b = 20 + hNorm * 21;
+
+            // Dark basaltic Bagnold-type sand ripple pocket (around x:303, y:226)
+            const dSand = Math.hypot((sx - 303) / 78, (sy - 226) / 30);
+            if (dSand < 1.0) {
+              const wSand = Math.pow(1 - dSand, 1.5) * 0.68;
+              const ripple = Math.sin(sx * 0.45 + sy * 0.2) * 4;
+              r = r * (1 - wSand) + (22 + ripple) * wSand;
+              g = g * (1 - wSand) + (29 + ripple) * wSand;
+              b = b * (1 - wSand) + (38 + ripple) * wSand;
+            }
+
+            // Light sulfate-bearing Boxwork plateau tint in NE (around x:478, y:92)
+            const dSulf = Math.hypot((sx - 478) / 95, (sy - 88) / 58);
+            if (dSulf < 1.0) {
+              const wSulf = (1 - dSulf) * 0.35;
+              r = r * (1 - wSulf) + 128 * wSulf;
+              g = g * (1 - wSulf) + 84 * wSulf;
+              b = b * (1 - wSulf) + 76 * wSulf;
+            }
+
+            const idx = (py * cw + px) * 4;
+            data[idx]     = Math.min(255, Math.max(0, Math.round(r * shade)));
+            data[idx + 1] = Math.min(255, Math.max(0, Math.round(g * shade)));
+            data[idx + 2] = Math.min(255, Math.max(0, Math.round(b * shade)));
+            data[idx + 3] = 255;
+          }
+        }
+
+        ctx.putImageData(img, 0, 0);
+        cachedOrbitalBasemapUrl = canvas.toDataURL('image/jpeg', 0.88);
+      } catch (e) {
+        cachedOrbitalBasemapUrl = '';
+      }
+      return cachedOrbitalBasemapUrl;
+    }
+
+    function renderMap() {
+      const svg = document.getElementById('marsMapSvg');
+      if (!svg) return;
+
+      const m = computeMetrics();
+      const wp = m.wp;
+      const L = state.layers;
+      const z = state.mapZoom;
+
+      // Dynamic zoom framing (50% to 200%) + pan offset
+      const baseW = 560, baseH = 290;
+      const w = baseW / z;
+      const h = baseH / z;
+      const focusX = (z > 1.0 ? (wp.x + 280) / 2 : 280) + state.mapPanX;
+      const focusY = (z > 1.0 ? (wp.y + 150) / 2 : 145) + state.mapPanY;
+      const minX = focusX - w / 2;
+      const minY = focusY - h / 2;
+      svg.setAttribute('viewBox', `${minX.toFixed(1)} ${minY.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
+
+      // Update cartographic scale bar
+      const fullMeters = Math.round(250 / z);
+      const halfMeters = Math.round(fullMeters / 2);
+      const halfEl = document.getElementById('mapScaleHalf');
+      const fullEl = document.getElementById('mapScaleFull');
+      if (halfEl) halfEl.textContent = halfMeters;
+      if (fullEl) fullEl.textContent = `${fullMeters}m`;
+
+      // Update 16:9 map border micro-telemetry (non-intrusive essential peripheral HUD)
+      const badgeEl = document.getElementById('mapActiveWpBadge');
+      const coordsEl = document.getElementById('mapActiveWpCoords');
+      const statusEl = document.getElementById('mapRouteStatusBadge');
+      const edgeO2El = document.getElementById('mapEdgeO2');
+      const edgeLoadEl = document.getElementById('mapEdgeLoad');
+
+      if (badgeEl) badgeEl.textContent = `${wp.id} • ${wp.shortName} (${m.confidencePct}% Conf.)`;
+      if (coordsEl) coordsEl.textContent = `Elev ${wp.elev}m • Slope ${wp.slope}° • Rover: ${wp.distFromBaseM}m`;
+      if (edgeO2El) {
+        edgeO2El.textContent = `O₂ ${m.autonomyMin}m`;
+        edgeO2El.className = m.isTurnaroundExceeded
+          ? 'text-[9px] font-mono font-bold text-rose-400'
+          : 'text-[9px] font-mono font-bold text-emerald-400';
+      }
+      if (edgeLoadEl) {
+        edgeLoadEl.textContent = `Load ${m.totalLoadKg}kg`;
+        edgeLoadEl.className = m.isOverweight
+          ? 'text-[9px] font-mono font-bold text-rose-400'
+          : 'text-[9px] font-mono font-bold text-amber-300';
+      }
+      const lockTag = state.currentWpIdx > 0 ? ' [LOCKED]' : '';
+      const marginTag = m.hasContingencyDrop ? ` • Live Limit: ${m.liveContingencyRadiusM}m` : '';
+      if (statusEl) {
+        if (m.routeMode === 'abort' || m.isTurnaroundExceeded) {
+          statusEl.textContent = `🚨 ABORT TO ROVER • Live Limit: ${m.effectiveSafeLimitM}m (PNR ${m.safeReturnRadiusM}m)`;
+          statusEl.className = 'text-[9px] font-mono text-rose-400 font-bold';
+        } else if (m.routeMode === 'shelter') {
+          statusEl.textContent = `🔵 N. SCARP SHELTER • ${!m.wp4Reachable ? 'WP-04 Cutoff' : 'OK'}${marginTag}`;
+          statusEl.className = 'text-[9px] font-mono text-sky-300 font-bold';
+        } else if (m.routeMode === 'cautious') {
+          statusEl.textContent = `🟡 LOW-GRADE CONTOUR • ${!m.wp4Reachable ? 'WP-04 Cutoff' : 'OK'}${marginTag}`;
+          statusEl.className = 'text-[9px] font-mono text-amber-300 font-bold';
+        } else {
+          statusEl.textContent = `🟢 NOMINAL ROUTE • PNR: ${m.safeReturnRadiusM}m${lockTag} (> WP-04 940m)`;
+          statusEl.className = 'text-[9px] font-mono text-emerald-400 font-semibold';
+        }
+      }
+
+      // Update Autonomous Pathplanner Live Decision Bar in External Deck
+      const solverEl = document.getElementById('extSolverDecisionText');
+      if (solverEl) {
+        if (m.routeMode === 'abort') {
+          solverEl.textContent = `🔴 MODE 4 (ABORT): ${m.solverReason}`;
+          solverEl.className = 'text-[11px] font-mono-tech font-bold text-rose-400';
+        } else if (m.routeMode === 'shelter') {
+          solverEl.textContent = `🔵 MODE 3 (SCARP SHELTER): ${m.solverReason}`;
+          solverEl.className = 'text-[11px] font-mono-tech font-bold text-sky-300';
+        } else if (m.routeMode === 'cautious') {
+          solverEl.textContent = `🟡 MODE 2 (LOW-GRADE CONTOUR): ${m.solverReason}`;
+          solverEl.className = 'text-[11px] font-mono-tech font-bold text-amber-300';
+        } else {
+          solverEl.textContent = `🟢 MODE 1 (NOMINAL): ${m.solverReason}`;
+          solverEl.className = 'text-[11px] font-mono-tech font-semibold text-emerald-300';
+        }
+      }
+
+      // Autonomous Route Corridors (WP-01 -> WP-02 -> WP-03 -> WP-04)
+      // Leg 1-3 (WP-01 to WP-03, 0m to 565m) vs Leg 3-4 (WP-03 to WP-04, 565m to 940m)
+      const nominalLeg1to3 = '75,232 195,180 248,128 315,112';
+      const nominalLeg3to4 = '315,112 395,92 475,95';
+
+      const cautiousLeg1to3 = '75,232 145,204 195,180 242,150 315,112';
+      const cautiousLeg3to4 = '315,112 388,108 475,95';
+
+      const shelterLeg1to3 = '75,232 135,165 215,102 315,76 315,112';
+      const shelterLeg3to4 = '315,76 405,72 475,95';
+
+      let html = `
+        <defs>
+          <!-- Hypsometric Relief Gradient (Lower Murray Basin SW to Mount Sharp Boxwork Slope NE) -->
+          <linearGradient id="marsHypsoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#130c09" />
+            <stop offset="28%" stop-color="#1f140f" />
+            <stop offset="55%" stop-color="#2c1b14" />
+            <stop offset="80%" stop-color="#3a2319" />
+            <stop offset="100%" stop-color="#4a2b1d" />
+          </linearGradient>
+
+          <!-- Hillshade Sun Illumination from NW (Azimuth 315°) -->
+          <radialGradient id="mountSharpHighlandGlow" cx="84%" cy="24%" r="58%">
+            <stop offset="0%" stop-color="rgba(217, 119, 6, 0.22)" />
+            <stop offset="55%" stop-color="rgba(154, 52, 18, 0.10)" />
+            <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+          </radialGradient>
+
+          <!-- Planetary Coordinate Graticule Pattern -->
+          <pattern id="galeGrid" width="70" height="55" patternUnits="userSpaceOnUse">
+            <path d="M 70 0 L 0 0 0 55" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="0.65"/>
+            <path d="M 35 0 L 35 55 M 0 27.5 L 70 27.5" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="0.4" stroke-dasharray="2 3"/>
+          </pattern>
+
+          <!-- USGS Lithologic Pattern: Murray Formation Laminated Mudstone (Mm) -->
+          <pattern id="patMudstone" width="24" height="12" patternUnits="userSpaceOnUse">
+            <line x1="2" y1="4" x2="14" y2="4" stroke="rgba(251, 191, 36, 0.16)" stroke-width="0.7" />
+            <line x1="10" y1="10" x2="22" y2="10" stroke="rgba(251, 191, 36, 0.16)" stroke-width="0.7" />
+          </pattern>
+
+          <!-- USGS Lithologic Pattern: Stimson Aeolian Cross-Bedded Sandstone (Es) -->
+          <pattern id="patSandstone" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(22)">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="rgba(251, 146, 60, 0.18)" stroke-width="0.7" stroke-dasharray="4 2" />
+            <line x1="0" y1="14" x2="18" y2="14" stroke="rgba(251, 146, 60, 0.13)" stroke-width="0.6" />
+          </pattern>
+
+          <!-- THEMIS Aeolian Sand Ripple Pattern (135 tiu Drift Pocket) -->
+          <pattern id="patAeolianSand" width="22" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-12)">
+            <path d="M 0,5 Q 5.5,1.5 11,5 T 22,5" fill="none" stroke="rgba(56, 189, 248, 0.32)" stroke-width="0.85" />
+          </pattern>
+        </defs>
+
+        <!-- 0. BASE ORBITAL MOLA/HIRISE SHADED-RELIEF DEM VS. HIGH-CONTRAST TACTICAL VECTOR MODE -->
+        ${L.background ? `
+          <rect x="-600" y="-450" width="1800" height="1200" fill="url(#marsHypsoGrad)" />
+          <image href="${getMountSharpBasemapUrl()}" x="-220" y="-130" width="1000" height="550" preserveAspectRatio="none" opacity="0.94" />
+          <rect x="-600" y="-450" width="1800" height="1200" fill="url(#mountSharpHighlandGlow)" />
+
+          <!-- Subtle Hypsometric Elevation Terraces (Base Geomorphology) -->
+          <path d="M -250,340 C 40,295 155,260 265,268 C 385,275 495,235 680,195 L 680,-250 L -250,-250 Z" fill="rgba(180, 83, 9, 0.06)" />
+          <path d="M -180,225 C 65,195 185,155 295,165 C 405,175 485,135 660,105 L 660,-250 L -180,-250 Z" fill="rgba(217, 119, 6, 0.07)" />
+          <path d="M 140,115 C 245,98 345,108 425,82 C 495,58 565,55 660,35 L 660,-250 L 140,-250 Z" fill="rgba(245, 158, 11, 0.08)" />
+        ` : `
+          <rect x="-600" y="-450" width="1800" height="1200" fill="#07090d" />
+        `}
+
+        <!-- Coordinate Graticule & Margin Ticks (Areocentric Lat/Lon — Mars Trek) -->
+        <rect x="-600" y="-450" width="1800" height="1200" fill="url(#galeGrid)" opacity="${state.mapZoom >= 1.25 ? '0.85' : '0.45'}" />
+        ${state.mapZoom >= 1.25 ? `
+          <g opacity="0.45" font-family="JetBrains Mono" font-size="5.8" fill="#a1a1aa">
+            <text x="72" y="10">137.420°E</text>
+            <text x="212" y="10">137.425°E</text>
+            <text x="352" y="10">137.430°E</text>
+            <text x="492" y="10">137.435°E</text>
+            <text x="8" y="54">4.640°S</text>
+            <text x="8" y="109">4.645°S</text>
+            <text x="8" y="164">4.650°S</text>
+            <text x="8" y="219">4.655°S</text>
+          </g>
+        ` : ''}
+      `;
+
+      const isDetailZoom = state.mapZoom >= 1.25;
+
+      // 1. USGS ASTROGEOLOGY STRATIGRAPHIC UNITS & CONTACTS (L.usgs — Low Opacity by Default, Semantic Detail on Zoom)
+      if (L.usgs) {
+        html += `
+          <g id="layer-usgs" opacity="${isDetailZoom ? '0.88' : '0.38'}">
+            <!-- Unit Mm: Lower Murray Formation (Lacustrine Mudstone) -->
+            <path d="M -200,130 C 10,122 115,138 185,152 C 235,162 252,198 242,330 L -200,330 Z"
+                  fill="url(#patMudstone)" stroke="rgba(245, 158, 11, 0.45)" stroke-width="1" stroke-dasharray="7 3 2 3" />
+            ${isDetailZoom ? `
+              <rect x="24" y="254" width="136" height="13" rx="3" fill="rgba(24, 16, 12, 0.78)" stroke="rgba(245, 158, 11, 0.45)" stroke-width="0.6" />
+              <text x="92" y="263" text-anchor="middle" fill="#fcd34d" font-size="6.6" font-family="JetBrains Mono" font-weight="bold">USGS • Murray Mudstone (Mm)</text>
+            ` : `
+              <text x="118" y="262" text-anchor="middle" fill="#fcd34d" font-size="7" font-family="JetBrains Mono" font-weight="bold">Mm</text>
+            `}
+
+            <!-- Unit Es: Stimson Formation (Sandstone Unconformity / Siccar Point Contact) -->
+            <path d="M 185,152 C 215,102 255,66 325,58 C 378,52 402,96 388,162 C 352,186 282,192 242,188 Z"
+                  fill="url(#patSandstone)" stroke="rgba(251, 146, 60, 0.52)" stroke-width="1.1" stroke-dasharray="6 2 1.5 2" />
+            ${isDetailZoom ? `
+              <rect x="236" y="168" width="142" height="13" rx="3" fill="rgba(24, 16, 12, 0.78)" stroke="rgba(251, 146, 60, 0.45)" stroke-width="0.6" />
+              <text x="307" y="177" text-anchor="middle" fill="#fdba74" font-size="6.6" font-family="JetBrains Mono" font-weight="bold">USGS • Stimson Sandstone (Es)</text>
+            ` : `
+              <text x="275" y="176" text-anchor="middle" fill="#fdba74" font-size="7" font-family="JetBrains Mono" font-weight="bold">Es</text>
+            `}
+
+            <!-- Unit Sbu: Sulfate-Bearing Unit (Boxwork Plateau) -->
+            <path d="M 325,58 C 385,22 475,12 620,18 L 620,175 C 515,172 435,168 388,162 C 402,96 378,52 325,58 Z"
+                  fill="rgba(192, 132, 252, 0.07)" stroke="rgba(192, 132, 252, 0.50)" stroke-width="1.1" stroke-dasharray="8 3 2 3" />
+            ${isDetailZoom ? `
+              <rect x="404" y="22" width="146" height="13" rx="3" fill="rgba(24, 16, 12, 0.78)" stroke="rgba(192, 132, 252, 0.45)" stroke-width="0.6" />
+              <text x="477" y="31" text-anchor="middle" fill="#e9d5ff" font-size="6.6" font-family="JetBrains Mono" font-weight="bold">USGS • Sulfate-Bearing Unit</text>
+            ` : `
+              <text x="462" y="34" text-anchor="middle" fill="#e9d5ff" font-size="7" font-family="JetBrains Mono" font-weight="bold">Sbu</text>
+            `}
+          </g>
+        `;
+      }
+
+      // 2. NASA MARS TREK TOPOGRAPHIC CONTOURS (4 MASTER CONTOURS) & SLOPE HAZARDS (L.topo)
+      if (L.topo) {
+        html += `
+          <g id="layer-topo">
+            <!-- 4 Clean Master Contour Lines (-2440m, -2420m, -2400m, -2385m) -->
+            <path d="M -60,218 C 15,216 58,226 98,246 C 138,266 168,282 205,295" fill="none" stroke="rgba(34, 211, 238, 0.34)" stroke-width="1.0" />
+            <text x="22" y="214" fill="rgba(103, 232, 249, 0.72)" font-size="6" font-family="JetBrains Mono">-2440m</text>
+
+            <path d="M -20,148 C 68,154 128,172 178,195 C 228,218 278,248 345,278" fill="none" stroke="rgba(34, 211, 238, 0.34)" stroke-width="1.0" />
+            <text x="48" y="148" fill="rgba(103, 232, 249, 0.72)" font-size="6" font-family="JetBrains Mono">-2420m</text>
+
+            <path d="M 85,72 C 165,88 228,118 286,148 C 338,175 398,202 495,235" fill="none" stroke="rgba(34, 211, 238, 0.38)" stroke-width="1.05" />
+            <text x="165" y="88" fill="rgba(103, 232, 249, 0.75)" font-size="6" font-family="JetBrains Mono">-2400m</text>
+
+            <path d="M 335,8 C 388,36 435,74 478,98 C 522,122 558,132 610,142" fill="none" stroke="rgba(34, 211, 238, 0.40)" stroke-width="1.05" />
+            <text x="392" y="48" fill="rgba(103, 232, 249, 0.75)" font-size="6" font-family="JetBrains Mono">-2385m</text>
+
+            ${isDetailZoom ? `
+              <!-- Intermediate Contours Revealed Only on Zoom >= 125% -->
+              <path d="M 15,112 C 96,124 156,154 205,184 C 258,214 318,236 410,268" fill="none" stroke="rgba(34, 211, 238, 0.22)" stroke-width="0.75" stroke-dasharray="6 3" />
+              <path d="M 165,42 C 235,62 285,95 332,124 C 385,156 448,178 545,202" fill="none" stroke="rgba(34, 211, 238, 0.22)" stroke-width="0.75" stroke-dasharray="6 3" />
+            ` : ''}
+
+            <!-- NORTHERN STIMSON RIDGE ESCARPMENT (SEP RADIATION TOPOGRAPHIC SHELTER WALL) -->
+            <path d="M 205,98 Q 265,68 345,66 Q 395,65 432,74" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.72" />
+            <path d="M 225,90 L 228,97 M 250,82 L 253,89 M 275,75 L 277,83 M 300,70 L 301,78 M 325,68 L 325,76 M 350,67 L 350,75 M 375,68 L 374,76 M 400,70 L 398,78" stroke="#38bdf8" stroke-width="1.0" opacity="0.68" />
+            ${isDetailZoom ? `
+              <rect x="242" y="49" width="146" height="12" rx="3" fill="rgba(8, 47, 73, 0.80)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.6" />
+              <text x="315" y="57.5" text-anchor="middle" fill="#7dd3fc" font-size="6.2" font-family="JetBrains Mono" font-weight="bold">▲ MARS TREK: N. SCARP SHELTER (8.5°)</text>
+            ` : `
+              <text x="315" y="59" text-anchor="middle" fill="#7dd3fc" font-size="6.2" font-family="JetBrains Mono" font-weight="bold">▲ SHELTER 8.5°</text>
+            `}
+
+            <!-- CRITICAL SOUTHERN STIMSON SCARP HAZARD ZONE (DYNAMICALLY SCALES WITH SUIT LOAD) -->
+            <g transform="translate(320, 152) scale(${(1 + Math.max(0, (15.1 - m.maxSafeSlope) * 0.08)).toFixed(2)}) translate(-320, -152)">
+              <path d="M 272,142 Q 318,125 362,138 Q 382,155 352,168 Q 305,172 272,142 Z"
+                    fill="rgba(239, 68, 68, ${m.isOverweight ? '0.36' : '0.20'})" stroke="#ef4444" stroke-width="${m.isOverweight ? '1.8' : '1.3'}" stroke-dasharray="4 2" />
+              <path d="M 276,144 Q 318,130 358,142" fill="none" stroke="#f87171" stroke-width="2.0" />
+            </g>
+            <text x="320" y="155" text-anchor="middle" fill="#fecaca" font-size="${isDetailZoom ? '7.0' : '6.3'}" font-family="JetBrains Mono" font-weight="bold">
+              ${m.basePayloadKg > 24 ? `⚠ 16.8° SCARP (MAX ${m.maxSafeSlope}°)` : '⚠ 16.8° SCARP'}
+            </text>
+          </g>
+        `;
+      }
+
+      // 3. NASA MARS TREK THERMAL INERTIA & ROVER TRAFFICABILITY LAYER (L.thermal)
+      if (L.thermal) {
+        html += `
+          <g id="layer-thermal" opacity="${isDetailZoom ? '0.92' : '0.68'}">
+            ${isDetailZoom ? `
+              <!-- High-Inertia Bedrock Label Revealed on Detail Zoom -->
+              <rect x="86" y="189" width="104" height="11" rx="2.5" fill="rgba(6, 78, 59, 0.65)" stroke="rgba(52, 211, 153, 0.45)" stroke-width="0.6" />
+              <text x="138" y="196.8" text-anchor="middle" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono">BEDROCK 325 tiu</text>
+            ` : ''}
+
+            <!-- Unconsolidated Aeolian Sand Ripple Trough (135 tiu — Blocks EVA Rover beyond WP-01) -->
+            <path d="M 212,216 C 238,195 305,192 358,204 C 392,212 396,242 362,254 C 312,265 242,258 214,238 Z"
+                  fill="url(#patAeolianSand)" stroke="#38bdf8" stroke-width="1.1" stroke-dasharray="4 2" />
+            <path d="M 212,216 C 238,195 305,192 358,204 C 392,212 396,242 362,254 C 312,265 242,258 214,238 Z"
+                  fill="rgba(14, 116, 144, 0.14)" />
+            ${isDetailZoom ? `
+              <rect x="234" y="216" width="138" height="20" rx="3" fill="rgba(9, 13, 22, 0.82)" stroke="rgba(56, 189, 248, 0.5)" stroke-width="0.6" />
+              <text x="303" y="224.5" text-anchor="middle" fill="#7dd3fc" font-size="6.6" font-family="JetBrains Mono" font-weight="bold">MARS TREK: 135 tiu DRIFT SAND</text>
+              <text x="303" y="232.8" text-anchor="middle" fill="#38bdf8" font-size="5.8" font-family="JetBrains Mono">ROVER NO-GO ZONE (SLIP &gt; 25%)</text>
+            ` : `
+              <text x="303" y="229" text-anchor="middle" fill="#7dd3fc" font-size="6.4" font-family="JetBrains Mono" font-weight="bold">135 tiu SAND (NO-GO)</text>
+            `}
+          </g>
+        `;
+      }
+
+      // 4. NASA MARS TREK SPECTRAL MINERALOGY & BOXWORK LATTICE (L.spectral — Low Opacity by Default)
+      if (L.spectral) {
+        html += `
+          <g id="layer-spectral" opacity="${isDetailZoom ? '0.88' : '0.42'}">
+            <!-- WP-02 Spectral Clay/Hematite Absorption Anomaly (2.30 µm) -->
+            <ellipse cx="195" cy="180" rx="26" ry="16" fill="rgba(192, 132, 252, 0.09)" stroke="#c084fc" stroke-width="1" stroke-dasharray="3 2" />
+            ${isDetailZoom ? `
+              <text x="195" y="159" text-anchor="middle" fill="#d8b4fe" font-size="6" font-family="JetBrains Mono">Mars Trek: 2.30µm Clay/Hem</text>
+            ` : ''}
+
+            <!-- WP-04 Diagenetic Polygonal Boxwork Ridge Network (1.94µm Hydrated Sulfates) -->
+            <g stroke="#c084fc" stroke-width="1.15" fill="rgba(168, 85, 247, 0.08)">
+              <polygon points="432,74 456,64 468,82 448,96 428,88" />
+              <polygon points="456,64 484,60 492,78 468,82" />
+              <polygon points="484,60 512,66 516,86 492,78" />
+              <polygon points="468,82 492,78 500,98 474,104 448,96" />
+              <polygon points="492,78 516,86 522,106 500,98" />
+              <polygon points="448,96 474,104 470,122 442,116 434,102" />
+              <polygon points="474,104 500,98 506,118 482,126 470,122" />
+              <polygon points="500,98 522,106 528,124 506,118" />
+              <path d="M 438,78 L 518,92 M 462,62 L 478,124 M 488,62 L 498,120" stroke="rgba(233, 213, 255, 0.5)" stroke-width="0.65" fill="none" />
+            </g>
+            ${isDetailZoom ? `
+              <rect x="420" y="128" width="122" height="12" rx="3" fill="rgba(24, 12, 36, 0.82)" stroke="rgba(192, 132, 252, 0.55)" stroke-width="0.6" />
+              <text x="481" y="136.5" text-anchor="middle" fill="#e9d5ff" font-size="6.4" font-family="JetBrains Mono" font-weight="bold">MARS TREK: 1.94µm BOXWORK</text>
+            ` : `
+              <text x="482" y="135" text-anchor="middle" fill="#e9d5ff" font-size="6.2" font-family="JetBrains Mono">1.94µm Boxwork</text>
+            `}
+          </g>
+        `;
+      }
+
+      // 5. CURIOSITY'S PROPOSED PATH UP MOUNT SHARP (L.curiosity — Subtle Reference Line)
+      if (L.curiosity) {
+        html += `
+          <g id="layer-curiosity" opacity="${isDetailZoom ? '0.82' : '0.42'}">
+            <polyline points="75,232 142,210 195,180 262,162 320,148 392,130 475,95"
+                      fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="5 3" />
+            ${isDetailZoom ? `
+              <circle cx="142" cy="210" r="2.1" fill="#fb923c" />
+              <text x="142" y="219" text-anchor="middle" fill="#fdba74" font-size="5.6" font-family="JetBrains Mono">Clay Unit</text>
+              <circle cx="262" cy="162" r="2.1" fill="#fb923c" />
+              <text x="260" y="156" text-anchor="middle" fill="#fdba74" font-size="5.6" font-family="JetBrains Mono">Sandstone</text>
+            ` : ''}
+            <circle cx="392" cy="130" r="2.1" fill="#fb923c" />
+            <text x="402" y="124" fill="#fdba74" font-size="5.8" font-family="JetBrains Mono">Curiosity Path</text>
+          </g>
+        `;
+      }
+
+      // 5B. DYNAMIC ENVIRONMENTAL HAZARD OVERLAYS (RADIATION SHIELDING & WORLDVIEW DUST PLUME)
+      if (state.spaceWeather !== 'nominal') {
+        const isSep = state.spaceWeather === 'sep';
+        html += `
+          <g id="layer-rad-hazard">
+            <!-- Exposed Central/Southern Plateau Radiation Flux Zone -->
+            <polygon points="180,185 385,112 525,105 525,245 180,245"
+                     fill="${isSep ? 'rgba(225, 29, 72, 0.14)' : 'rgba(245, 158, 11, 0.10)'}"
+                     stroke="${isSep ? 'rgba(244, 63, 94, 0.45)' : 'rgba(245, 158, 11, 0.35)'}" stroke-width="0.9" stroke-dasharray="4 3" />
+            <text x="395" y="182" text-anchor="middle" fill="${isSep ? '#fda4af' : '#fcd34d'}" font-size="6.2" font-family="JetBrains Mono" font-weight="bold">
+              ${isSep ? '☢ SEP 1.45 mSv/h EXPOSED ZONE' : '☢ ELEVATED FLUX (0.68 mSv/h)'}
+            </text>
+            <!-- Northern Stimson Escarpment Shielding Shadow (-55% Dose) -->
+            <path d="M 135,165 Q 225,95 315,74 Q 385,68 445,78" fill="none" stroke="rgba(56, 189, 248, 0.35)" stroke-width="14" stroke-linecap="round" />
+            <text x="275" y="72" text-anchor="middle" fill="#bae6fd" font-size="6.0" font-family="JetBrains Mono" font-weight="bold">🛡 N. SCARP RAD SHIELD (-55%)</text>
+          </g>
+        `;
+      }
+
+      if (state.atmosphere !== 'clear') {
+        const isDust = state.atmosphere === 'dust';
+        const visRadiusPx = isDust ? 44 : 82;
+        html += `
+          <g id="layer-atm-hazard">
+            <!-- NASA Worldview Atmospheric Dust Front Sweeping Across Upper Mount Sharp -->
+            <ellipse cx="425" cy="115" rx="${isDust ? '210' : '155'}" ry="${isDust ? '115' : '85'}"
+                     fill="${isDust ? 'rgba(180, 83, 9, 0.28)' : 'rgba(217, 119, 6, 0.16)'}"
+                     stroke="${isDust ? 'rgba(251, 146, 60, 0.6)' : 'rgba(251, 191, 36, 0.4)'}" stroke-width="1" stroke-dasharray="6 3" />
+            <text x="435" y="56" text-anchor="middle" fill="${isDust ? '#fdba74' : '#fde68a'}" font-size="6.3" font-family="JetBrains Mono" font-weight="bold">
+              ${isDust ? '🌪 WORLDVIEW: DUST STORM (TAU 2.60 τ)' : '☁ WORLDVIEW: DUST HAZE (TAU 1.25 τ)'}
+            </text>
+            <!-- Astronaut Optical Visibility Ring -->
+            <circle cx="${wp.x}" cy="${wp.y}" r="${visRadiusPx}" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3 2" opacity="0.75" />
+            <text x="${wp.x}" y="${wp.y - visRadiusPx - 3}" text-anchor="middle" fill="#fde68a" font-size="5.6" font-family="JetBrains Mono">
+              VISIBILITY LIMIT (${isDust ? 'Tau 2.60' : 'Tau 1.25'})
+            </text>
+          </g>
+        `;
+      }
+
+      // 6. ROVER DUAL POINT-OF-NO-RETURN ARCHITECTURE (Nominal 1010m > WP-04 at 940m)
+      // Scale: WP-01 (75,232) to WP-04 (475,95) is 422.8 px = 940 m (2.223 m/px)
+      const radiusPx = Math.round(m.safeReturnRadiusM / 2.223);
+      const liveRadiusPx = Math.round(m.liveContingencyRadiusM / 2.223);
+      const pnrTagWidth = isDetailZoom ? 148 : 96;
+      const pnrTagX = Math.min(435, Math.max(15, Math.round(75 + radiusPx * 0.86) - Math.round(pnrTagWidth / 2)));
+      const pnrTagY = Math.max(14, Math.round(232 - radiusPx * 0.46) - 10);
+      html += `
+        <g id="layer-return-rings">
+          <!-- 1. Locked Baseline Point of No Return Perimeter (1010m encompasses WP-04 in nominal conditions) -->
+          <circle cx="75" cy="232" r="${radiusPx}" fill="rgba(16, 185, 129, 0.02)" stroke="${m.hasContingencyDrop ? 'rgba(239, 68, 68, 0.55)' : '#10b981'}" stroke-width="1.5" stroke-dasharray="7 4" />
+          <rect x="${pnrTagX}" y="${pnrTagY}" width="${pnrTagWidth}" height="12.5" rx="3" fill="rgba(9, 24, 18, 0.88)" stroke="${m.hasContingencyDrop ? '#ef4444' : '#10b981'}" stroke-width="0.75" />
+          <text x="${pnrTagX + Math.round(pnrTagWidth / 2)}" y="${pnrTagY + 8.8}" text-anchor="middle" fill="${m.hasContingencyDrop ? '#fecaca' : '#6ee7b7'}" font-size="6.1" font-family="JetBrains Mono" font-weight="bold">
+            ${isDetailZoom ? `PLANNED PNR: ${m.safeReturnRadiusM}m` : `PNR: ${m.safeReturnRadiusM}m`}${state.currentWpIdx > 0 ? ' [LOCKED]' : ''}
+          </text>
+
+          <!-- 2. Live Contingency Walkback Envelope (Shrinks inside Locked PNR when Load, Radiation, or Dust increases) -->
+          ${m.hasContingencyDrop ? `
+            <circle cx="75" cy="232" r="${liveRadiusPx}" fill="rgba(245, 158, 11, 0.045)" stroke="${m.wp4Reachable ? '#f59e0b' : '#ef4444'}" stroke-width="2.1" stroke-dasharray="4 3" class="safe-return-pulse" />
+            <rect x="${Math.min(395, Math.max(15, Math.round(75 + liveRadiusPx * 0.78) - 62))}" y="${Math.max(30, Math.round(232 - liveRadiusPx * 0.56) - 9)}" width="124" height="12.5" rx="3" fill="rgba(69, 10, 10, 0.92)" stroke="#f59e0b" stroke-width="0.8" />
+            <text x="${Math.min(457, Math.max(77, Math.round(75 + liveRadiusPx * 0.78)))}" y="${Math.max(38.8, Math.round(232 - liveRadiusPx * 0.56) - 0.2)}" text-anchor="middle" fill="#fde68a" font-size="6.1" font-family="JetBrains Mono" font-weight="bold">
+              ⚠ O₂ LIMIT: ${m.liveContingencyRadiusM}m
+            </text>
+          ` : ''}
+        </g>
+      `;
+
+      // 7. AUTONOMOUS 4-MODE ROUTE RENDERER (NOMINAL vs. CAUTIOUS CONTOUR vs. N. SCARP SHELTER vs. EMERGENCY ABORT)
+      if (m.routeMode === 'nominal') {
+        // Show auto-rejected direct hazard line + Active Emerald Nominal Route to WP-04 (940m)
+        html += `
+          <polyline points="195,180 320,152 475,95" fill="none" stroke="rgba(239, 68, 68, 0.38)" stroke-width="1.2" stroke-dasharray="3 3" />
+          <polyline points="${shelterLeg1to3} 405,72 475,95" fill="none" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.4" stroke-dasharray="2 4" />
+          <polyline points="${nominalLeg1to3} ${nominalLeg3to4}" fill="none" stroke="#10b981" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="348" y="76" width="108" height="11.5" rx="2.5" fill="rgba(6, 78, 59, 0.88)" stroke="#10b981" stroke-width="0.7" />
+          <text x="402" y="84" text-anchor="middle" fill="#6ee7b7" font-size="5.8" font-family="JetBrains Mono" font-weight="bold">▶ AUTO: NOMINAL (8.4°)</text>
+        `;
+      } else if (m.routeMode === 'cautious') {
+        // Low-Grade Metabolic Contour (6.4°) + Cutoff of WP-04 if Live O2 Limit < 940m
+        html += `
+          <!-- Bypassed steeper primary ridge -->
+          <polyline points="${nominalLeg1to3}" fill="none" stroke="rgba(161, 161, 170, 0.35)" stroke-width="1.4" stroke-dasharray="3 3" />
+          <!-- Active Low-Grade Contour up to WP-03 -->
+          <polyline points="${cautiousLeg1to3}" fill="none" stroke="#f59e0b" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="172" y="132" width="118" height="11.5" rx="2.5" fill="rgba(69, 26, 3, 0.90)" stroke="#f59e0b" stroke-width="0.7" />
+          <text x="231" y="140" text-anchor="middle" fill="#fde68a" font-size="5.8" font-family="JetBrains Mono" font-weight="bold">▶ AUTO: LOW-GRADE (6.4°)</text>
+          ${m.wp4Reachable ? `
+            <polyline points="${cautiousLeg3to4}" fill="none" stroke="#f59e0b" stroke-width="3.4" stroke-linecap="round" />
+          ` : `
+            <!-- WP-03 to WP-04 Cut Off by O2 Limit -->
+            <polyline points="${cautiousLeg3to4}" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="4 3" />
+            <rect x="345" y="92" width="118" height="12" rx="2.5" fill="rgba(69, 10, 10, 0.92)" stroke="#ef4444" stroke-width="0.75" />
+            <text x="404" y="100.2" text-anchor="middle" fill="#fecaca" font-size="5.8" font-family="JetBrains Mono" font-weight="bold">✕ WP-04 CUTOFF (O₂ LIMIT)</text>
+            <!-- Autonomous Turnaround Return Arc from WP-03 to Rover -->
+            <path d="M 315,112 Q 210,165 75,232" fill="none" stroke="#34d399" stroke-width="2.0" stroke-dasharray="5 3" />
+          `}
+        `;
+      } else if (m.routeMode === 'shelter') {
+        // Northern Scarp Shelter Route (8.5° SEP/Wind Shield) + WP-04 Cutoff when O2 Limit < 940m
+        html += `
+          <!-- Exposed central ridge crossed out -->
+          <polyline points="${nominalLeg1to3}" fill="none" stroke="rgba(239, 68, 68, 0.45)" stroke-width="1.6" stroke-dasharray="3 3" />
+          <text x="245" y="142" text-anchor="middle" fill="#fca5a5" font-size="5.8" font-family="JetBrains Mono" font-weight="bold">✕ EXPOSED</text>
+          <!-- Active Northern Scarp Shelter Route -->
+          <polyline points="${shelterLeg1to3}" fill="none" stroke="#38bdf8" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="165" y="82" width="132" height="12" rx="2.5" fill="rgba(8, 47, 73, 0.92)" stroke="#38bdf8" stroke-width="0.8" />
+          <text x="231" y="90.2" text-anchor="middle" fill="#7dd3fc" font-size="5.9" font-family="JetBrains Mono" font-weight="bold">▶ AUTO: N. SCARP SHELTER (8.5°)</text>
+          ${m.wp4Reachable ? `
+            <polyline points="${shelterLeg3to4}" fill="none" stroke="#38bdf8" stroke-width="3.4" stroke-linecap="round" />
+          ` : `
+            <!-- WP-03 to WP-04 Cut Off by O2 Limit -->
+            <polyline points="${shelterLeg3to4}" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="4 3" />
+            <rect x="345" y="76" width="118" height="12" rx="2.5" fill="rgba(69, 10, 10, 0.92)" stroke="#ef4444" stroke-width="0.75" />
+            <text x="404" y="84.2" text-anchor="middle" fill="#fecaca" font-size="5.8" font-family="JetBrains Mono" font-weight="bold">✕ WP-04 CUTOFF (O₂ LIMIT)</text>
+          `}
+        `;
+      } else {
+        // MODE 4: EMERGENCY ROVER ABORT (Both WP-03 and WP-04 Cutoff, Direct Emergency Return Vector to WP-01 Rover)
+        html += `
+          <polyline points="195,180 315,112 475,95" fill="none" stroke="#ef4444" stroke-width="2.0" stroke-dasharray="3 3" opacity="0.75" />
+          <rect x="275" y="102" width="136" height="12.5" rx="2.5" fill="rgba(69, 10, 10, 0.94)" stroke="#ef4444" stroke-width="0.8" />
+          <text x="343" y="110.5" text-anchor="middle" fill="#fecaca" font-size="5.9" font-family="JetBrains Mono" font-weight="bold">✕ MISSION ABORT (O₂ &lt; 565m)</text>
+          <!-- Direct Emergency Walkback Vector from Active Station to WP-01 Rover -->
+          <line x1="${wp.x}" y1="${wp.y}" x2="75" y2="232" stroke="#f43f5e" stroke-width="4.0" stroke-dasharray="6 3" class="safe-return-pulse" />
+          <rect x="92" y="188" width="134" height="12.5" rx="2.5" fill="rgba(136, 19, 55, 0.94)" stroke="#fb7185" stroke-width="0.8" />
+          <text x="159" y="196.5" text-anchor="middle" fill="#ffe4e6" font-size="6.0" font-family="JetBrains Mono" font-weight="bold">◀ EMERGENCY ABORT TO ROVER</text>
+        `;
+      }
+
+      // 8. PRESSURIZED EVA ROVER ICON AT WP-01 + WAYPOINT STATIONS + ASTRONAUT BEACON
+      html += `
+        <g transform="translate(34, 218)" onclick="selectWaypoint(0)" style="cursor: pointer;">
+          <rect x="0" y="4" width="24" height="13" rx="3" fill="#065f46" stroke="#34d399" stroke-width="1.2" />
+          <rect x="15" y="6" width="7" height="9" rx="1.5" fill="#67e8f9" opacity="0.85" />
+          <circle cx="4" cy="3" r="2" fill="#18181b" stroke="#a1a1aa" stroke-width="0.8" />
+          <circle cx="12" cy="3" r="2" fill="#18181b" stroke="#a1a1aa" stroke-width="0.8" />
+          <circle cx="20" cy="3" r="2" fill="#18181b" stroke="#a1a1aa" stroke-width="0.8" />
+          <circle cx="4" cy="18" r="2" fill="#18181b" stroke="#a1a1aa" stroke-width="0.8" />
+          <circle cx="12" cy="18" r="2" fill="#18181b" stroke="#a1a1aa" stroke-width="0.8" />
+          <circle cx="20" cy="18" r="2" fill="#18181b" stroke="#a1a1aa" stroke-width="0.8" />
+          <text x="12" y="27" text-anchor="middle" fill="#6ee7b7" font-size="5.8" font-family="JetBrains Mono" font-weight="bold">ROVER</text>
+        </g>
+      `;
+
+      // M5: Compact Waypoint Station Markers (Full Distance Badge Only on Active Waypoint or Detailed Zoom)
+      waypoints.forEach((wItem, idx) => {
+        const isSel = idx === state.currentWpIdx;
+        const showFullWpBadge = isSel || isDetailZoom;
+        const badgeW = showFullWpBadge ? 50 : 28;
+        const fill = isSel ? '#22d3ee' : wItem.id === 'WP-04' ? '#f59e0b' : wItem.id === 'WP-01' ? '#10b981' : '#18181b';
+        html += `
+          <g onclick="selectWaypoint(${idx})" style="cursor: pointer;">
+            ${isSel ? `
+              <!-- Active Astronaut Field-of-View Heading Cone -->
+              <polygon points="${wItem.x},${wItem.y} ${wItem.x + 28},${wItem.y - 32} ${wItem.x + 38},${wItem.y - 12}" fill="rgba(34, 211, 238, 0.22)" />
+              <circle cx="${wItem.x}" cy="${wItem.y}" r="14" fill="rgba(34, 211, 238, 0.18)" stroke="#22d3ee" stroke-width="1.3" stroke-dasharray="3 2" />
+            ` : ''}
+            <circle cx="${wItem.x}" cy="${wItem.y}" r="${isSel ? 7.5 : 5.8}" fill="${fill}" stroke="#ffffff" stroke-width="1.8" />
+            <rect x="${wItem.x - Math.round(badgeW / 2)}" y="${wItem.y + 9.5}" width="${badgeW}" height="11.5" rx="2.5" fill="rgba(9, 9, 11, 0.85)" stroke="${isSel ? '#22d3ee' : 'rgba(255,255,255,0.22)'}" stroke-width="0.7" />
+            <text x="${wItem.x}" y="${wItem.y + 17.5}" text-anchor="middle" fill="${isSel ? '#67e8f9' : '#e4e4e7'}" font-size="${isSel ? '7.2' : '6.6'}" font-family="JetBrains Mono" font-weight="bold">
+              ${showFullWpBadge ? `${wItem.id} (${wItem.distFromBaseM}m)` : wItem.id}
+            </text>
+          </g>
+        `;
+      });
+
+      svg.innerHTML = html;
+    }
+
+    function renderElevationProfile() {
+      const svg = document.getElementById('elevationSvg');
+      if (!svg) return;
+      const m = computeMetrics();
+      const pts = [
+        { x: 45,  y: 44, label: 'WP-01 (0m)', idx: 0 },
+        { x: 185, y: 31, label: 'WP-02 (245m)', idx: 1 },
+        { x: 345, y: 20, label: 'WP-03 (565m)', idx: 2 },
+        { x: 515, y: 11, label: 'WP-04 (940m)', idx: 3 }
+      ];
+      // Scale: 45px = 0m, 515px = 940m (0.5 px per meter, so 1010m = 550px)
+      const terrainPath = '45,44 105,40 145,35 185,31 245,28 295,22 345,20 405,16 460,13 515,11 555,9';
+      const pnrX = Math.min(585, Math.round(45 + m.safeReturnRadiusM * 0.5));
+      const liveX = Math.min(585, Math.round(45 + m.liveContingencyRadiusM * 0.5));
+      svg.innerHTML = `
+        <polygon points="45,54 ${terrainPath} 555,54" fill="rgba(34, 211, 238, 0.14)" />
+        <polyline points="${terrainPath}" fill="none" stroke="#22d3ee" stroke-width="2" />
+        <!-- Planned Locked Point of No Return (1010m > WP-04 940m) -->
+        <line x1="${pnrX}" y1="4" x2="${pnrX}" y2="54" stroke="#10b981" stroke-width="1.3" stroke-dasharray="3 2" />
+        <text x="${pnrX - 3}" y="11" text-anchor="end" fill="#6ee7b7" font-size="7" font-family="JetBrains Mono" font-weight="bold">PNR ${m.safeReturnRadiusM}m</text>
+        ${m.hasContingencyDrop ? `
+          <line x1="${liveX}" y1="4" x2="${liveX}" y2="54" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2 2" />
+          <text x="${liveX - 3}" y="21" text-anchor="end" fill="#fca5a5" font-size="7" font-family="JetBrains Mono" font-weight="bold">LIMIT ${m.liveContingencyRadiusM}m</text>
+        ` : ''}
+        ${pts.map(p => `
+          <g onclick="selectWaypoint(${p.idx})" style="cursor: pointer;">
+            <circle cx="${p.x}" cy="${p.y}" r="${p.idx === state.currentWpIdx ? 5.5 : 4}" fill="${p.idx === state.currentWpIdx ? '#f59e0b' : '#10b981'}" stroke="#ffffff" stroke-width="1.5" />
+            <text x="${p.x}" y="${p.y + 13}" text-anchor="middle" fill="${p.idx === state.currentWpIdx ? '#fcd34d' : '#d4d4d8'}" font-size="7.5" font-family="JetBrains Mono" font-weight="bold">${p.label}</text>
+          </g>
+        `).join('')}
+      `;
+    }
+
+    // =========================================================================
+    // 4. HELMET VISOR HUD (SYMBOLIC ALERTS + SUIT MASS + AUDIO) & DATA SCREEN
+    // =========================================================================
+    function renderVisorHud(m) {
+      const wp = m.wp;
+      document.getElementById('hudAutonomyVal').textContent = `${m.autonomyMin} min`;
+      document.getElementById('hudO2RateVal').textContent = `${m.o2Rate} L/min`;
+      document.getElementById('hudAutonomyBar').style.width = `${m.reservePct}%`;
+      document.getElementById('hudAutonomyBar').className = `h-full transition-all duration-300 ${m.reservePct < 35 ? 'bg-amber-400' : 'bg-emerald-400'}`;
+
+      const hdgEl = document.getElementById('hudHeadingVal');
+      const goalEl = document.getElementById('hudDistGoalVal');
+      document.getElementById('hudNextWpLabel').innerHTML = `Sector: <strong class="text-white">${wp.shortName}</strong>`;
+      document.getElementById('hudDistRoverVal').textContent = `${wp.distFromBaseM} m`;
+
+      // Synchronize Visor Optical Compass (HDG) & Goal with Autonomous Pathplanner Decisions
+      if (m.routeMode === 'abort' || m.isTurnaroundExceeded) {
+        if (hdgEl) {
+          hdgEl.textContent = 'HDG 232° SW • ABORT';
+          hdgEl.className = 'text-xs font-bold text-rose-400 animate-pulse';
+        }
+        if (goalEl) {
+          goalEl.textContent = 'RETURN TO ROVER';
+          goalEl.className = 'text-rose-400 font-bold';
+        }
+      } else if (!m.wp4Reachable) {
+        if (hdgEl) {
+          hdgEl.textContent = m.routeMode === 'shelter' ? 'HDG 028° NNE (SHELTER)' : `HDG ${wp.heading} (6.4°)`;
+          hdgEl.className = m.routeMode === 'shelter' ? 'text-xs font-bold text-sky-300' : 'text-xs font-bold text-amber-300';
+        }
+        if (goalEl) {
+          const distToWp3 = Math.max(0, 565 - wp.distFromBaseM);
+          goalEl.textContent = distToWp3 === 0 ? 'TURNAROUND AT WP-03' : `WP-03 CUTOFF (${distToWp3} m)`;
+          goalEl.className = 'text-amber-300 font-bold';
+        }
+      } else {
+        if (hdgEl) {
+          hdgEl.textContent = m.routeMode === 'shelter' ? 'HDG 028° NNE (SHELTER)' : `HDG ${wp.heading}`;
+          hdgEl.className = m.routeMode === 'shelter' ? 'text-xs font-bold text-sky-300' : 'text-xs font-bold text-cyan-300';
+        }
+        if (goalEl) {
+          goalEl.textContent = wp.distToGoalM === 0 ? 'AT TARGET' : `${wp.distToGoalM} m`;
+          goalEl.className = 'text-cyan-300 font-bold';
+        }
+      }
+
+      document.getElementById('hudMaxSlopeVal').textContent = `Max: ${m.maxSafeSlope}°`;
+      document.getElementById('hudCurrentSlopeVal').textContent = `${wp.slope}°`;
+      document.getElementById('hudSlopeSafetyBadge').textContent = wp.slope > m.maxSafeSlope ? 'SLOPE LIMIT!' : `Firm (${wp.tiu} tiu)`;
+      document.getElementById('hudSlopeSafetyBadge').className = wp.slope > m.maxSafeSlope
+        ? 'text-[10px] font-mono-tech text-red-400 font-bold'
+        : 'text-[10px] font-mono-tech text-emerald-400';
+
+      // Suit Mass + Sample Collection Load on Visor (Checklist requirement)
+      const loadCard = document.getElementById('hudLoadCard');
+      const totalLoadEl = document.getElementById('hudTotalLoadVal');
+      const sampleAddEl = document.getElementById('hudSampleAddVal');
+      const loadBadgeEl = document.getElementById('hudLoadLimitBadge');
+      if (totalLoadEl) totalLoadEl.textContent = `${m.totalLoadKg} kg`;
+      if (sampleAddEl) sampleAddEl.textContent = `+${m.sampleKg.toFixed(1)} kg Samples`;
+      if (m.isOverweight) {
+        if (loadBadgeEl) {
+          loadBadgeEl.textContent = 'OVER LIMIT';
+          loadBadgeEl.className = 'text-[10px] font-mono-tech text-amber-400 font-bold animate-pulse';
+        }
+        if (loadCard) {
+          loadCard.className = 'bg-amber-950/70 backdrop-blur-md border border-amber-500/80 rounded-xl px-3.5 py-2 min-w-[140px] text-center transition-all';
+        }
+      } else {
+        if (loadBadgeEl) {
+          loadBadgeEl.textContent = 'Nominal';
+          loadBadgeEl.className = 'text-[10px] font-mono-tech text-emerald-400';
+        }
+        if (loadCard) {
+          loadCard.className = 'bg-zinc-950/65 backdrop-blur-md border border-zinc-800/80 rounded-xl px-3.5 py-2 min-w-[140px] text-center transition-all';
+        }
+      }
+
+      // Space Weather / Radiation (MSL-RAD)
+      const radValEl = document.getElementById('hudRadVal');
+      const radStatusEl = document.getElementById('hudRadStatus');
+      if (state.spaceWeather === 'nominal') {
+        radValEl.textContent = '0.24 mSv/h';
+        radStatusEl.textContent = 'Nominal';
+        radStatusEl.className = 'text-[9px] font-mono-tech text-emerald-400 mt-0.5';
+      } else if (state.spaceWeather === 'elevated') {
+        radValEl.textContent = '0.68 mSv/h';
+        radStatusEl.textContent = 'Elevated';
+        radStatusEl.className = 'text-[9px] font-mono-tech text-amber-400 mt-0.5';
+      } else {
+        radValEl.textContent = '1.45 mSv/h';
+        radStatusEl.textContent = 'SEP Window';
+        radStatusEl.className = 'text-[9px] font-mono-tech text-rose-400 mt-0.5 font-bold';
+      }
+
+      // Atmosphere (Optical Depth Tau)
+      const tauEl = document.getElementById('hudTauVal');
+      const visEl = document.getElementById('hudVisVal');
+      if (state.atmosphere === 'clear') {
+        tauEl.textContent = 'Tau 0.45 τ';
+        visEl.textContent = 'High Visibility';
+      } else if (state.atmosphere === 'haze') {
+        tauEl.textContent = 'Tau 1.25 τ';
+        visEl.textContent = 'Moderate Haze';
+      } else {
+        tauEl.textContent = 'Tau 2.60 τ';
+        visEl.textContent = 'Regional Dust';
+      }
+
+      // Minimalist Symbolic Hazard Strip (Replaces bulky text pop-ups)
+      const symTurn = document.getElementById('symTurnaround');
+      const symTurnCode = document.getElementById('symTurnaroundCode');
+      const symMass = document.getElementById('symOverweight');
+      const symMassCode = document.getElementById('symOverweightCode');
+      const symEnv = document.getElementById('symEnvHazard');
+      const symEnvIcon = document.getElementById('symEnvIcon');
+      const symEnvCode = document.getElementById('symEnvCode');
+      const symRoute = document.getElementById('symRouteChange');
+
+      const hasEnvHazard = state.spaceWeather === 'sep' || state.atmosphere === 'dust';
+
+      if (symTurn) {
+        symTurn.classList.toggle('hidden', !m.isTurnaroundExceeded || state.turnaroundAlertDismissed);
+        if (symTurnCode) symTurnCode.textContent = `RET ${m.effectiveSafeLimitM}m`;
+      }
+      if (symMass) {
+        symMass.classList.toggle('hidden', !m.isOverweight || state.turnaroundAlertDismissed);
+        if (symMassCode) symMassCode.textContent = `${m.totalLoadKg}kg LIM`;
+      }
+      if (symEnv) {
+        symEnv.classList.toggle('hidden', !hasEnvHazard || state.turnaroundAlertDismissed);
+        if (state.spaceWeather === 'sep') {
+          if (symEnvIcon) symEnvIcon.className = 'fa-solid fa-radiation text-xs text-rose-400';
+          if (symEnvCode) symEnvCode.textContent = 'SEP 1.45';
+        } else if (state.atmosphere === 'dust') {
+          if (symEnvIcon) symEnvIcon.className = 'fa-solid fa-smog text-xs text-amber-400';
+          if (symEnvCode) symEnvCode.textContent = 'TAU 2.60';
+        }
+      }
+      if (symRoute) {
+        symRoute.classList.toggle('hidden', !m.needsAltRoute || state.turnaroundAlertDismissed);
+      }
+
+      // Clean Unobstructed Helmet Visor Field of View (Only subtle ambient dust/SEP tint when active, zero wireframe clutter)
+      const sceneBox = document.getElementById('visorSceneBox');
+      if (sceneBox) {
+        const dustOpacity = state.atmosphere === 'dust' ? 0.38 : state.atmosphere === 'haze' ? 0.16 : 0;
+        const sepTint = state.spaceWeather === 'sep' ? 'rgba(225, 29, 72, 0.10)' : 'rgba(0,0,0,0)';
+        sceneBox.innerHTML = `
+          <svg viewBox="0 0 1000 420" preserveAspectRatio="none" class="w-full h-full">
+            <rect width="1000" height="420" fill="${sepTint}" />
+            <rect width="1000" height="420" fill="rgba(180, 83, 9, ${dustOpacity})" />
+          </svg>
+        `;
+      }
+
+      // Trigger audio alert chime whenever a new hazard combination activates
+      const currentAlertSig = `${m.isTurnaroundExceeded ? 'T' : ''}${m.isOverweight ? 'M' : ''}${hasEnvHazard ? 'E' : ''}`;
+      if (currentAlertSig && currentAlertSig !== state.wasAlertSignature) {
+        playTurnaroundAlertTone();
+      }
+      state.wasAlertSignature = currentAlertSig;
+    }
+
+    const cachedRawTextures = {};
+    function getRawSurfaceTextureUrl(visualType, wpId) {
+      const key = `${visualType}_${wpId}`;
+      if (cachedRawTextures[key]) return cachedRawTextures[key];
+      try {
+        const w = 360, h = 128;
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        const img = ctx.createImageData(w, h);
+        const d = img.data;
+
+        function hash(x, y) {
+          const n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+          return n - Math.floor(n);
+        }
+        function noise(x, y) {
+          const ix = Math.floor(x), iy = Math.floor(y);
+          const fx = x - ix, fy = y - iy;
+          const u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);
+          const a = hash(ix, iy), b = hash(ix + 1, iy), c = hash(ix, iy + 1), e = hash(ix + 1, iy + 1);
+          return (a * (1 - u) + b * u) * (1 - v) + (c * (1 - u) + e * u) * v;
+        }
+        function fbm(x, y) {
+          return 0.55 * noise(x, y) + 0.3 * noise(x * 2.3, y * 2.3) + 0.15 * noise(x * 5.1, y * 5.1);
+        }
+
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const idx = (y * w + x) * 4;
+            // Sky / horizon top 26px
+            if (y < 26) {
+              const skyGrad = y / 26;
+              d[idx] = Math.round(38 + skyGrad * 36);
+              d[idx + 1] = Math.round(24 + skyGrad * 20);
+              d[idx + 2] = Math.round(19 + skyGrad * 14);
+              d[idx + 3] = 255;
+              continue;
+            }
+            const n1 = fbm(x * 0.06, y * 0.06);
+            const n2 = fbm(x * 0.22, y * 0.22);
+            let r = 96, g = 54, b = 38;
+
+            if (visualType === 'flat') {
+              // Indurated Lower Murray bedrock pavement with basaltic pebbles
+              const bed = Math.sin(y * 0.25 + n1 * 3.5) * 10;
+              const grain = (n2 - 0.5) * 42;
+              r = 104 + bed + grain;
+              g = 62 + bed * 0.7 + grain * 0.7;
+              b = 46 + bed * 0.5 + grain * 0.6;
+            } else if (visualType === 'layers') {
+              // Finely laminated lacustrine mudstone + white calcium-sulfate fracture veins
+              const laminae = Math.sin(y * 0.55 + Math.sin(x * 0.03) * 2.5 + n1 * 2.2) * 18;
+              const veinDist = Math.abs(Math.sin((x * 0.045 - y * 0.07) + n1 * 1.8));
+              const isVein = veinDist < 0.045;
+              r = isVein ? 225 : 118 + laminae + (n2 - 0.5) * 30;
+              g = isVein ? 218 : 66 + laminae * 0.7 + (n2 - 0.5) * 22;
+              b = isVein ? 210 : 48 + laminae * 0.5 + (n2 - 0.5) * 18;
+            } else if (visualType === 'scarp') {
+              // Stimson cross-bedded aeolian sandstone scarp + dark sand pocket at base
+              const isSand = y > 96 + Math.sin(x * 0.04) * 6;
+              if (isSand) {
+                const ripple = Math.sin(x * 0.35 + y * 0.15) * 8;
+                r = 38 + ripple;
+                g = 46 + ripple;
+                b = 58 + ripple;
+              } else {
+                const crossBed = Math.sin((x * 0.12 + y * 0.28) + n1 * 3.0) * 22;
+                r = 132 + crossBed + (n2 - 0.5) * 28;
+                g = 74 + crossBed * 0.65 + (n2 - 0.5) * 20;
+                b = 48 + crossBed * 0.45 + (n2 - 0.5) * 15;
+              }
+            } else {
+              // Boxwork polygonal cemented sulfate ridges
+              const cell = Math.abs(Math.sin(x * 0.075 + n1 * 1.4) * Math.cos(y * 0.095 - n1 * 1.4));
+              const isRidge = cell < 0.16;
+              r = isRidge ? 186 + (n2 - 0.5) * 25 : 82 + (n1 - 0.5) * 30;
+              g = isRidge ? 132 + (n2 - 0.5) * 20 : 48 + (n1 - 0.5) * 20;
+              b = isRidge ? 148 + (n2 - 0.5) * 22 : 42 + (n1 - 0.5) * 18;
+            }
+
+            d[idx] = Math.max(0, Math.min(255, Math.round(r)));
+            d[idx + 1] = Math.max(0, Math.min(255, Math.round(g)));
+            d[idx + 2] = Math.max(0, Math.min(255, Math.round(b)));
+            d[idx + 3] = 255;
+          }
+        }
+        ctx.putImageData(img, 0, 0);
+
+        // Overlay authentic NASA Engineering Camera Reticle & 10cm Scale Bar
+        ctx.strokeStyle = 'rgba(34, 211, 238, 0.55)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(8, 8, w - 16, h - 16);
+        // Crosshairs
+        ctx.beginPath();
+        ctx.moveTo(w / 2 - 12, h / 2 + 6);
+        ctx.lineTo(w / 2 + 12, h / 2 + 6);
+        ctx.moveTo(w / 2, h / 2 - 6);
+        ctx.lineTo(w / 2, h / 2 + 18);
+        ctx.stroke();
+
+        // Top HUD Header Banner
+        ctx.fillStyle = 'rgba(9, 9, 11, 0.72)';
+        ctx.fillRect(8, 8, w - 16, 17);
+        ctx.fillStyle = '#67e8f9';
+        ctx.font = 'bold 9px JetBrains Mono, monospace';
+        ctx.fillText(`${wpId} • MARS 2020 RAW ANALOG TEXTURE`, 14, 19.5);
+
+        // Bottom 10cm Scale Bar
+        ctx.fillStyle = 'rgba(9, 9, 11, 0.75)';
+        ctx.fillRect(w - 86, h - 24, 72, 13);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(w - 80, h - 16, 20, 3);
+        ctx.strokeStyle = '#ffffff';
+        ctx.strokeRect(w - 60, h - 16, 20, 3);
+        ctx.font = '8px JetBrains Mono, monospace';
+        ctx.fillText('10cm', w - 36, h - 14);
+
+        cachedRawTextures[key] = canvas.toDataURL('image/jpeg', 0.9);
+      } catch (e) {
+        cachedRawTextures[key] = '';
+      }
+      return cachedRawTextures[key];
+    }
+
+    function renderDataScreen(m) {
+      const wp = m.wp;
+      document.getElementById('dataPayloadVal').textContent = `${state.payloadKg} kg`;
+      const estEl = document.getElementById('dataEstLoadWithSamples');
+      if (estEl) {
+        estEl.textContent = `(w/ Samples: ${m.totalLoadKg} kg)`;
+        estEl.className = m.isOverweight
+          ? 'ml-1.5 text-xs font-mono-tech text-amber-400 font-bold'
+          : 'ml-1.5 text-xs font-mono-tech text-cyan-300';
+      }
+      const extLoadEl = document.getElementById('extLoadLabel');
+      if (extLoadEl) {
+        extLoadEl.textContent = `${state.payloadKg} kg (Total: ${m.totalLoadKg} kg)`;
+        extLoadEl.className = m.isOverweight
+          ? 'text-[11px] font-mono-tech font-bold text-amber-400'
+          : 'text-[11px] font-mono-tech font-bold text-cyan-300';
+      }
+      document.getElementById('dataMaxSlope').textContent = `Max Slope: ${m.maxSafeSlope}°`;
+      document.getElementById('dataAutonomyVal').textContent = `O₂: ${m.autonomyMin} min`;
+
+      const doseTotal = ((state.spaceWeather === 'nominal' ? 0.24 : state.spaceWeather === 'elevated' ? 0.68 : 1.45) * 0.88).toFixed(2);
+      document.getElementById('dataRadTotal').textContent = `EVA Dose: ${doseTotal} mSv`;
+      document.getElementById('dataRadNote').textContent =
+        state.spaceWeather === 'nominal'
+          ? 'Safe exposure across the lower Mount Sharp traverse.'
+          : state.spaceWeather === 'elevated'
+          ? 'Moderate solar flux: minimize exposure along exposed ridges.'
+          : 'SEP Event active: reroute to northern Stimson scarp topographic shelter.';
+
+      document.getElementById('dataTempVal').textContent =
+        state.atmosphere === 'clear' ? '-54°C • 12 km/h' : state.atmosphere === 'haze' ? '-61°C • 28 km/h' : '-68°C • 46 km/h';
+      document.getElementById('dataAtmNote').textContent =
+        state.atmosphere === 'clear'
+          ? 'High optical contrast (>15 km) for visual landmark navigation.'
+          : state.atmosphere === 'haze'
+          ? 'Reduced optical contrast: rely on MOLA elevation contours.'
+          : 'Regional dust (Tau 2.60 τ): restrict movement to consolidated bedrock corridor.';
+
+      document.getElementById('dataWpTitle').textContent = `${wp.id} — ${wp.name}`;
+      const confEl = document.getElementById('dataConfidenceBadge');
+      if (confEl) confEl.textContent = `Confidence: ${m.confidencePct}%`;
+      document.getElementById('dataWpUsgs').textContent = `USGS: ${wp.usgs}`;
+      document.getElementById('dataWpTerrain').textContent = `Elev ${wp.elev} m • Slope ${wp.slope}° • Rover: ${wp.distFromBaseM} m (Remaining: ${wp.distToGoalM} m) • ${wp.tiu} tiu.`;
+      document.getElementById('dataWpMineral').textContent = wp.mineral;
+      document.getElementById('dataWpScience').textContent = wp.science;
+
+      document.querySelectorAll('.data-wp-btn').forEach(btn => {
+        const idx = Number(btn.dataset.idx);
+        btn.className = idx === state.currentWpIdx
+          ? 'data-wp-btn px-2 py-1 rounded text-[10px] font-mono-tech border border-cyan-500/60 bg-cyan-500/15 text-cyan-300 font-semibold'
+          : 'data-wp-btn px-2 py-1 rounded text-[10px] font-mono-tech border border-zinc-800 text-zinc-400 hover:text-white';
+      });
+
+      document.querySelectorAll('.ext-wp-btn').forEach(btn => {
+        const idx = Number(btn.dataset.idx);
+        btn.className = idx === state.currentWpIdx
+          ? 'ext-wp-btn px-2.5 py-1 rounded-lg text-[11px] font-mono-tech border border-cyan-500/60 bg-cyan-500/15 text-cyan-300 font-semibold transition'
+          : 'ext-wp-btn px-2.5 py-1 rounded-lg text-[11px] font-mono-tech border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:text-white transition';
+      });
+
+      // High-Resolution Surface Texture Preview (Mars 2020 Raw Images Analog Standard)
+      const svgBox = document.getElementById('dataRawSvgBox');
+      const rawUrl = getRawSurfaceTextureUrl(wp.visualType, wp.id);
+      svgBox.innerHTML = `<img src="${rawUrl}" alt="${wp.rawTitle}" class="w-full h-[124px] object-cover block" />`;
+      document.getElementById('dataRawTitle').textContent = wp.rawTitle;
+      document.getElementById('dataRawDesc').textContent = wp.rawDesc;
+      document.getElementById('dataRawId').textContent = wp.rawId;
+    }
+
+    function openBriefModal() {
+      document.getElementById('briefModal').classList.remove('hidden');
+    }
+    function closeBriefModal() {
+      document.getElementById('briefModal').classList.add('hidden');
+    }
+
+    function renderAll() {
+      const m = computeMetrics();
+      renderVisorHud(m);
+      renderMap();
+      renderElevationProfile();
+      renderDataScreen(m);
+    }
+
+    // =========================================================================
+    // 5. VOICE RECOGNITION FOR EVA HANDS-FREE OPERATIONS (EN-US & PT-BR)
+    // =========================================================================
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let voiceRecognition = null;
+    let isVoiceActive = false;
+    let voiceFeedbackTimer = null;
+    let activeVoiceLang = 'en-US';
+
+    function showVoiceFeedback(msg, isError = false) {
+      const badge = document.getElementById('voiceFeedbackBadge');
+      if (!badge) return;
+      badge.textContent = msg;
+      badge.className = isError
+        ? 'text-[11px] font-mono-tech text-red-300 bg-red-950/80 border border-red-500/50 px-2.5 py-1 rounded-lg max-w-[230px] truncate'
+        : 'text-[11px] font-mono-tech text-cyan-300 bg-cyan-950/80 border border-cyan-500/40 px-2.5 py-1 rounded-lg max-w-[230px] truncate';
+      clearTimeout(voiceFeedbackTimer);
+      voiceFeedbackTimer = setTimeout(() => {
+        badge.classList.add('hidden');
+      }, 3600);
+    }
+
+    function updateVoiceButtonUI() {
+      const btn = document.getElementById('btnVoiceCmd');
+      const icon = document.getElementById('voiceMicIcon');
+      const label = document.getElementById('voiceBtnLabel');
+      if (!btn || !icon || !label) return;
+
+      if (isVoiceActive) {
+        btn.className = 'nav-tab border-cyan-500/60 bg-cyan-500/15 text-cyan-200';
+        icon.className = 'fa-solid fa-microphone text-cyan-400 animate-pulse';
+        label.textContent = 'Listening (EN/PT)...';
+      } else {
+        btn.className = 'nav-tab border-zinc-800 bg-zinc-950/80 text-zinc-300';
+        icon.className = 'fa-solid fa-microphone-slash text-zinc-500';
+        label.textContent = 'Voice: Off';
+      }
+    }
+
+    function applyVoiceLayerAction(cmd, layerKey, labelEn) {
+      let desiredState = undefined;
+      if (
+        cmd.includes('enable') || cmd.includes('turn on') || cmd.includes('show') || cmd.includes('activate') ||
+        cmd.includes('ativar') || cmd.includes('ligar') || cmd.includes('mostrar') || cmd.includes('exibir')
+      ) {
+        desiredState = true;
+      } else if (
+        cmd.includes('disable') || cmd.includes('turn off') || cmd.includes('hide') || cmd.includes('deactivate') ||
+        cmd.includes('desativar') || cmd.includes('desligar') || cmd.includes('ocultar') || cmd.includes('esconder') || cmd.includes('tirar')
+      ) {
+        desiredState = false;
+      }
+      toggleLayer(layerKey, desiredState);
+      showVoiceFeedback(`✓ ${labelEn}: ${state.layers[layerKey] ? 'ON' : 'OFF'}`);
+    }
+
+    function processVoiceCommand(rawTranscript) {
+      const cmd = rawTranscript
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+
+      // 1. Dismiss Alert Symbols or Modal (EN & PT)
+      if (
+        (cmd.includes('remove') || cmd.includes('close') || cmd.includes('dismiss') || cmd.includes('hide') || cmd.includes('clear') ||
+         cmd.includes('retirar') || cmd.includes('fechar') || cmd.includes('remover') || cmd.includes('tirar') || cmd.includes('ocultar') || cmd.includes('dispensar')) &&
+        (cmd.includes('alert') || cmd.includes('warning') || cmd.includes('turnaround') || cmd.includes('pop') || cmd.includes('symbol') ||
+         cmd.includes('alerta') || cmd.includes('aviso') || cmd.includes('retorno'))
+      ) {
+        dismissTurnaroundPopup();
+        closeBriefModal();
+        showVoiceFeedback('✓ Alerts Dismissed');
+        return true;
+      }
+
+      // 2. Map Pan & Reset (EN & PT)
+      if (
+        cmd.includes('center') || cmd.includes('reset') || cmd.includes('default') ||
+        cmd.includes('centralizar') || cmd.includes('centro') || cmd.includes('resetar') || cmd.includes('original') || cmd.includes('inicio') || cmd.includes('padrao')
+      ) {
+        resetMapView();
+        showVoiceFeedback('✓ Map: Centered');
+        return true;
+      }
+      if (cmd.includes('left') || cmd.includes('esquerda')) {
+        panMap(-55, 0);
+        showVoiceFeedback('✓ Map: Pan Left');
+        return true;
+      }
+      if (cmd.includes('right') || cmd.includes('direita')) {
+        panMap(55, 0);
+        showVoiceFeedback('✓ Map: Pan Right');
+        return true;
+      }
+      if (cmd.includes('up') || cmd.includes('north') || cmd.includes('cima') || cmd.includes('norte')) {
+        panMap(0, -45);
+        showVoiceFeedback('✓ Map: Pan Up');
+        return true;
+      }
+      if (cmd.includes('down') || cmd.includes('south') || cmd.includes('baixo') || cmd.includes('sul')) {
+        panMap(0, 45);
+        showVoiceFeedback('✓ Map: Pan Down');
+        return true;
+      }
+
+      // 3. Map Layers by Voice (Satellite Background / Plano de Fundo, Topography, Geology, Thermal Inertia, Spectral, Curiosity)
+      if (
+        cmd.includes('background') ||
+        cmd.includes('plano de fundo') ||
+        cmd.includes('satellite') ||
+        cmd.includes('satelite')
+      ) {
+        applyVoiceLayerAction(cmd, 'background', 'Satellite Background');
+        return true;
+      }
+      if (cmd.includes('topography') || cmd.includes('slope') || cmd.includes('mars trek') || cmd.includes('topografia') || cmd.includes('declive')) {
+        applyVoiceLayerAction(cmd, 'topo', 'Topography');
+        return true;
+      }
+      if (cmd.includes('geology') || cmd.includes('usgs') || cmd.includes('geologia')) {
+        applyVoiceLayerAction(cmd, 'usgs', 'Geology');
+        return true;
+      }
+      if (cmd.includes('thermal') || cmd.includes('inertia') || cmd.includes('themis') || cmd.includes('inercia') || cmd.includes('termica')) {
+        applyVoiceLayerAction(cmd, 'thermal', 'Thermal Inertia');
+        return true;
+      }
+      if (cmd.includes('spectral') || cmd.includes('crism') || cmd.includes('mineral') || cmd.includes('espectral')) {
+        applyVoiceLayerAction(cmd, 'spectral', 'Spectral');
+        return true;
+      }
+      if (cmd.includes('curiosity') || cmd.includes('rover') || cmd.includes('trilha')) {
+        applyVoiceLayerAction(cmd, 'curiosity', 'Curiosity Path');
+        return true;
+      }
+
+      // 4. Switch Wrist LCD Screen via Voice or Physical Analog Button Command (EN & PT)
+      if (
+        cmd.includes('button') || cmd.includes('bezel') || cmd.includes('botao') ||
+        ((cmd.includes('switch') || cmd.includes('toggle') || cmd.includes('change') || cmd.includes('swap') ||
+          cmd.includes('trocar') || cmd.includes('alternar') || cmd.includes('mudar')) &&
+         (cmd.includes('lcd') || cmd.includes('arm') || cmd.includes('screen') || cmd.includes('display') || cmd.includes('wrist') ||
+          cmd.includes('braco') || cmd.includes('tela') || cmd.includes('aba')))
+      ) {
+        pressAnalogBezelButton();
+        showVoiceFeedback(state.activeView === 'lcd-map' ? '✓ Bezel Toggle: 16:9 Map' : '✓ Bezel Toggle: 16:9 Data');
+        return true;
+      }
+
+      // 5. Go directly to Wrist Map or Visor (EN & PT)
+      if (cmd.includes('visor') || cmd.includes('helmet') || cmd.includes('hud') || cmd.includes('capacete')) {
+        switchView('visor');
+        showVoiceFeedback('✓ Helmet Visor HUD');
+        return true;
+      }
+      if (cmd.includes('map') || cmd.includes('mapa')) {
+        switchView('lcd-map');
+        showVoiceFeedback('✓ Wrist LCD: Map');
+        return true;
+      }
+
+      // 6. Go directly to Wrist Data & Science (EN & PT)
+      if (cmd.includes('data') || cmd.includes('science') || cmd.includes('dados') || cmd.includes('ciencia')) {
+        switchView('lcd-data');
+        showVoiceFeedback('✓ Wrist LCD: Data');
+        return true;
+      }
+
+      // 7. Map Zoom Controls by Voice (EN & PT)
+      if (cmd.includes('zoom in') || cmd.includes('aumentar zoom') || cmd.includes('aproximar')) {
+        adjustMapZoom(0.25);
+        showVoiceFeedback(`✓ Zoom ${Math.round(state.mapZoom * 100)}%`);
+        return true;
+      }
+      if (cmd.includes('zoom out') || cmd.includes('diminuir zoom') || cmd.includes('afastar')) {
+        adjustMapZoom(-0.25);
+        showVoiceFeedback(`✓ Zoom ${Math.round(state.mapZoom * 100)}%`);
+        return true;
+      }
+
+      // 8. Hands-Free Waypoint Selection by Voice (EN & PT)
+      if (cmd.includes('waypoint 1') || cmd.includes('wp 1') || cmd.includes('ponto 1') || cmd.includes('station 1')) {
+        selectWaypoint(0);
+        showVoiceFeedback('✓ Selected WP-01 (Rover)');
+        return true;
+      }
+      if (cmd.includes('waypoint 2') || cmd.includes('wp 2') || cmd.includes('ponto 2') || cmd.includes('station 2') || cmd.includes('murray')) {
+        selectWaypoint(1);
+        showVoiceFeedback('✓ Selected WP-02 (Murray)');
+        return true;
+      }
+      if (cmd.includes('waypoint 3') || cmd.includes('wp 3') || cmd.includes('ponto 3') || cmd.includes('station 3') || cmd.includes('stimson')) {
+        selectWaypoint(2);
+        showVoiceFeedback('✓ Selected WP-03 (Stimson)');
+        return true;
+      }
+      if (cmd.includes('waypoint 4') || cmd.includes('wp 4') || cmd.includes('ponto 4') || cmd.includes('station 4') || cmd.includes('boxwork')) {
+        selectWaypoint(3);
+        showVoiceFeedback('✓ Selected WP-04 (Boxwork)');
+        return true;
+      }
+      if (cmd.includes('next waypoint') || cmd.includes('proximo ponto') || cmd.includes('avancar')) {
+        selectWaypoint(Math.min(3, state.currentWpIdx + 1));
+        showVoiceFeedback(`✓ Waypoint WP-0${state.currentWpIdx + 1}`);
+        return true;
+      }
+      if (cmd.includes('previous waypoint') || cmd.includes('ponto anterior') || cmd.includes('voltar ponto')) {
+        selectWaypoint(Math.max(0, state.currentWpIdx - 1));
+        showVoiceFeedback(`✓ Waypoint WP-0${state.currentWpIdx + 1}`);
+        return true;
+      }
+
+      showVoiceFeedback(`"${rawTranscript}"`, true);
+      return false;
+    }
+
+    function toggleVoiceCommands() {
+      if (!SpeechRecognitionAPI) {
+        showVoiceFeedback('Voice API unavailable in this browser', true);
+        return;
+      }
+
+      if (isVoiceActive) {
+        isVoiceActive = false;
+        try { voiceRecognition.stop(); } catch (e) {}
+        updateVoiceButtonUI();
+        showVoiceFeedback('Voice commands paused');
+        return;
+      }
+
+      if (!voiceRecognition) {
+        voiceRecognition = new SpeechRecognitionAPI();
+        voiceRecognition.lang = activeVoiceLang;
+        voiceRecognition.continuous = true;
+        voiceRecognition.interimResults = false;
+        voiceRecognition.maxAlternatives = 3;
+
+        voiceRecognition.onresult = function (event) {
+          const lastResult = event.results[event.results.length - 1];
+          if (lastResult && lastResult.isFinal) {
+            let matched = false;
+            for (let i = 0; i < lastResult.length; i++) {
+              if (processVoiceCommand(lastResult[i].transcript)) {
+                matched = true;
+                break;
+              }
+            }
+            if (!matched) {
+              activeVoiceLang = activeVoiceLang === 'en-US' ? 'pt-BR' : 'en-US';
+              voiceRecognition.lang = activeVoiceLang;
+            }
+          }
+        };
+
+        voiceRecognition.onerror = function (event) {
+          if (event.error === 'not-allowed') {
+            isVoiceActive = false;
+            updateVoiceButtonUI();
+            showVoiceFeedback('Microphone permission denied', true);
+          }
+        };
+
+        voiceRecognition.onend = function () {
+          if (isVoiceActive) {
+            voiceRecognition.lang = activeVoiceLang;
+            try { voiceRecognition.start(); } catch (e) {}
+          }
+        };
+      }
+
+      try {
+        isVoiceActive = true;
+        voiceRecognition.lang = activeVoiceLang;
+        voiceRecognition.start();
+        updateVoiceButtonUI();
+        showVoiceFeedback('Say: "left", "right", "up", "down", "center", "switch LCD"...');
+      } catch (e) {
+        isVoiceActive = false;
+        updateVoiceButtonUI();
+      }
+    }
+
+    window.onload = function () {
+      const mapContainer = document.getElementById('marsMapContainer');
+      if (mapContainer) {
+        mapContainer.addEventListener('wheel', function (e) {
+          e.preventDefault();
+          adjustMapZoom(e.deltaY < 0 ? 0.25 : -0.25);
+        }, { passive: false });
+
+        // Drag-to-pan support
+        let isDragging = false;
+        let lastClientX = 0;
+        let lastClientY = 0;
+
+        mapContainer.addEventListener('mousedown', function (e) {
+          isDragging = true;
+          lastClientX = e.clientX;
+          lastClientY = e.clientY;
+        });
+
+        window.addEventListener('mousemove', function (e) {
+          if (!isDragging) return;
+          const dx = (e.clientX - lastClientX) / state.mapZoom;
+          const dy = (e.clientY - lastClientY) / state.mapZoom;
+          lastClientX = e.clientX;
+          lastClientY = e.clientY;
+          panMap(-dx, -dy);
+        });
+
+        window.addEventListener('mouseup', function () {
+          isDragging = false;
+        });
+      }
+      updateZoomControlsUI();
+      renderAll();
+    };
+  </script>
+</body>
+</html>
